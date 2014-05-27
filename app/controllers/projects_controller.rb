@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.where(user: current_user)
   end
 
   # GET /projects/1
@@ -77,13 +77,13 @@ class ProjectsController < ApplicationController
 
     def user
       if !user_signed_in? 
-        redirect_to '/', error: "You must log in"
+        redirect_to '/', notice: "You must log in"
       end
     end
 
     def owner
       if !user_signed_in? || current_user != Project.find(params[:id]).user
-        redirect_to projects_path, error: 'Only the project owner can make changes.'
+        redirect_to projects_path, notice: 'Only the project owner can make changes.'
       end
     end
 end

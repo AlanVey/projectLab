@@ -1,5 +1,5 @@
 module HomeHelper
-
+# Required so that devise can have it's sign up page on home
   def resource_name
     :user
   end
