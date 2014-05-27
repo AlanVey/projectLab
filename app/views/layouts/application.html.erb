@@ -51,14 +51,11 @@
             <ul class="nav">
               <% if user_signed_in? %>
                 <li><%= link_to current_user.email, edit_user_registration_path  %></li>
-                <li>
-                  <%= link_to "Log Out", destroy_user_session_path, method: :delete  %>
-                </li>
+                <li><%= link_to "Projects", projects_path  %></li>
+                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete  %></li>
               <% else %>
-                <li><%= link_to "Sign Up", new_user_registration_path  %></li>
                 <li><%= link_to "Log In", new_user_session_path  %></li>
               <% end %>
-              <li><%= link_to "Projects", projects_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -76,7 +73,7 @@
         </div><!--/row-->
 
       <footer>
-        <p>
+        <p>  
           &copy; Alan Vey, Octavian Tuchila. Webapps Project Imperial College London 2014
         </p>
       </footer>

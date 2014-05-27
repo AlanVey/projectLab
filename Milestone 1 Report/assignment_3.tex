@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Imperial College London - Department Of Computing} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Milestone Report 1 - Webapps Project\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Alan Vey, Octavian Tuchila} % Your name
+
+\date{\normalsize May 28, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{General Description of Web Application Project}
+
+\subsection{Group Structure and Work Division}
+
+So far this project has presented us with barely any difficulties, so there has been little difference in the roles of the individuals. Alan and Octavian met on the day the project commenced and together came up with the idea. The day after we had a meeting lead by Alan, who already had a general plan in place, in which we rigorously organised everything we could, by coming up with a general ideas for the control flow, sketches of the pages and general Model separation as we are following a MVC pattern. After this meeting we all agreed to learn the required programming languages we did not already know. We have not met again with Sean since as he is still in the learning process, however Alan and Octavian have spent the week working together in the library. Octavian found some great online tutorials and Alan, combined with previous knowledge, has used them to set up the project using gitlab and created a landing page, user verification functionality and a basic project page. Since raising his knowledge to the required level, Octavian has focused his efforts on the legislative assignment. \newline
+
+Work division for the main development stage is yet to be discussed. I assume it will be each team member working on a section of the Website on their individual branch, conducting extensive module testing and upon completion, merging back to master and performing integration tests.\clearpage
+
+
+%------------------------------------------------
+
+\subsubsection{Implementation Language}
+
+We have decided to complete this project using Ruby on Rails. None of us have any prior experience creating web based applications and, to the best of our knowledge, this is the simplest approach for generating a project of this scope in an efficient manner. We really like the ability Rails gives us for modular and integration testing as well as the MVC pattern for software design and are keen to learn more. Having done our WACC compiler in CoffeeScript should allow for a faster grasping of AJAX components in our design. Also considering our course has taught us little about dynamic, reflective programming languages, we see Ruby as an excellent tool to aid our development.
+
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\section{Our Webapp - Project Management}
+
+Our webapp is simple project management software with the possible extension of using case based reasoning to analyse the quality of team members contributions. Users can sign up and then create projects adding team members. They then set up tasks for the project and have in browser editing capabilities for their either uploaded of created documents. Analysis of contribution and overall project status graphs will also be provided.
+
+
+%------------------------------------------------
+
+\subsection{User Interactions}
+
+The project will have user authentication capabilities and synchronised user access to document editing within individual projects. Some sort of user hierarchy will be implemented, allowing for project ownership, task ownership and general team member status. We have yet to decide whether documents within projects will be simultaneously editable by users. Some sort of chatting element will exist, however this will probably be in the context of comments on tasks.
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
