@@ -48,10 +48,9 @@
           </a>
           <a class="brand" href="/">Pjmanagement</a>
           <div class="container nav-collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li><%= link_to current_user.email, edit_user_registration_path  %></li>
-                <li><%= link_to "Projects", projects_path  %></li>
                 <li><%= link_to "Log Out", destroy_user_session_path, method: :delete  %></li>
               <% else %>
                 <li><%= link_to "Log In", new_user_session_path  %></li>
@@ -73,9 +72,7 @@
         </div><!--/row-->
 
       <footer>
-        <p>  
-          &copy; Alan Vey, Octavian Tuchila. Webapps Project Imperial College London 2014
-        </p>
+        <p></p>
       </footer>
 
     </div> <!-- /container -->
