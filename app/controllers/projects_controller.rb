@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :user 
-  before_filter :owner, only: [:edit, :update, :destroy]
+  before_filter :owner, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
