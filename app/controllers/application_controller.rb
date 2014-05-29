@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def User_is_project_owner
+  def user_is_project_owner
     if current_user != Project.find(params[:id]).user
       redirect_to projects_path, notice: 'Only the project owner can make changes.'
     end

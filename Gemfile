@@ -32,6 +32,7 @@ gem 'spring',        group: :development
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :test, :development do 

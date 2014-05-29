@@ -15,10 +15,23 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  #add Capybara commands
+  # Add Capybara commands
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
 
+  # Clean the test database before running tests
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+  # Make sure Capybara cleans up
   def teardown
     Capybara.reset_sessions!
     Capybara.use_default_driver
