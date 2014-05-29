@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = FactoryGirl.create(:user) }
+  before { @user = FactoryGirl.build(:user) }
 
   subject { @user }
 
@@ -10,7 +10,7 @@ describe User do
   it { should respond_to(:projects) }
 
   describe "when email is not present" do
-    before { @user.email = " " }
+    before { @user.email = "" }
     it { should_not be_valid }
   end
 
@@ -45,6 +45,4 @@ describe User do
     specify { user_with_same_email.should_not be_valid }
 
   end
-
-  # Tests for project association
 end
