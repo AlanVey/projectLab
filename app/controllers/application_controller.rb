@@ -3,9 +3,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def user
+  def user_not_signed_in
     if !user_signed_in? 
       redirect_to '/', notice: "You must log in"
+    end
+  end
+
+  def user_signed_in
+    if user_signed_in?
+      redirect_to projects_path
+    end
+  end
+
+  def User_is_project_owner
+    if current_user != Project.find(params[:id]).user
+      redirect_to projects_path, notice: 'Only the project owner can make changes.'
     end
   end
 end

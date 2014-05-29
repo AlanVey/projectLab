@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :user 
+  before_filter :user_not_signed_in
   before_filter :owner, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -73,17 +73,5 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description)
-    end
-
-    def user
-      if !user_signed_in? 
-        redirect_to '/', notice: "You must log in"
-      end
-    end
-
-    def owner
-      if !user_signed_in? || current_user != Project.find(params[:id]).user
-        redirect_to projects_path, notice: 'Only the project owner can make changes.'
-      end
     end
 end

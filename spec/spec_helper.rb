@@ -14,6 +14,16 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  #add Capybara commands
+  config.include Capybara::DSL
+  config.include FactoryGirl::Syntax::Methods
+
+  def teardown
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
