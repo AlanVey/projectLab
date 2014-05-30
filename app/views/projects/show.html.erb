@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @project.name %>
+  <h1><%= @project.name %></h1>
 </p>
 
 <p>
-  <strong>Description:</strong>
   <%= @project.description %>
 </p>
 
-<% if user_signed_in? && current_user == @project.user %>
-  <%= link_to 'Edit', edit_project_path(@project) %> |
+<% if current_user == @project.user %>
+  <%= link_to 'Edit', edit_project_path(@project) %> 
 <% end %>
-<%= link_to 'Back', projects_path %>
