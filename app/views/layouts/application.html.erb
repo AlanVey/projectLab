@@ -56,6 +56,12 @@
                 <li><%= link_to "Log In", new_user_session_path  %></li>
               <% end %>
             </ul>
+            <ul class="nav pull-left">
+                <% if request.original_url =~ /\/projects\/[0-9]+/ %>
+                  <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
+                  <li><%= link_to "Edit", ''  %></li>
+                <% end %>
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
