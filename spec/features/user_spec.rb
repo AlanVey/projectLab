@@ -29,4 +29,15 @@ feature 'Visitor signs up' do
     expect(page).to have_content('Log In')
     current_path.should eq('/')
   end
+
+  scenario 'without confirming their password' do
+    visit '/'
+    fill_in 'Email', with: 'email@example.com'
+    fill_in 'Password', with: 'ThisIsAPassword123$$$'
+    fill_in 'Password confirmation', with: ''
+    click_button 'Sign up'
+
+    current_path.should eq('/')
+    expect(page).to have_content('Password confirmation doesn\'t match Password')
+  end
 end

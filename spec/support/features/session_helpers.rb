@@ -10,7 +10,7 @@ module Features
     end
 
     def sign_in
-      user = create(:user)
+      user = FactoryGirl.create(:user)
       visit '/sign_in'
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
@@ -18,17 +18,12 @@ module Features
       return user
     end
 
-    def sign_out
-      click_link 'Log out'
-    end
-
-    def submit_project(name = 'valid name', description = 'valid description', path = '/projects/new')
-      sign_in
-      visit path
+    def create_project(name = 'valid name', description = 'valid description')
+      visit '/projects/new'
       fill_in 'Name', with: name
       fill_in 'Description', with: description
       click_button 'Create Project'
     end
+
   end
-  
 end

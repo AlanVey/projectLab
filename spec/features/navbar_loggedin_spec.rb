@@ -17,12 +17,12 @@ feature 'View a page with the navbar when signed in' do
     fill_in 'Password confirmation', with: 'abcdefghijklmnop'
     fill_in 'Current password', with: @user.password
     click_button 'Update'
-    current_path.should == projects_path
+    current_path.should eq(projects_path)
   end
 
   scenario 'navigate to root page' do
     click_link @user.email
     click_link "Pjmanagement"
-    current_path.should == '/projects'
+    current_path.should eq('/projects')
   end
 end

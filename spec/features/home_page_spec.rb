@@ -5,11 +5,9 @@ feature 'User visits home page' do
     visit '/'
   end
   scenario 'and signs up' do
-    fill_in 'Email', with: 'email@example.com'
-    fill_in 'Password', with: 'ThisIsAPassword123$$$'
-    fill_in 'Password confirmation', with: 'ThisIsAPassword123$$$'
-    click_button 'Sign up'
+    sign_up_with 'email@example.com', 'ThisIsAPassword123$$$'
 
-    expect(page).to have_content('Listing projects')
+    current_path.should eq('/projects')
   end
 end
+
