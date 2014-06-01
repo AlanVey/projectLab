@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :project_users
+
+  resources :projects do
+    resources :project_users
+  end
 
   root to: 'home#index'
 

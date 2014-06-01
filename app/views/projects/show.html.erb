@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @project.name %></h1>
-</p>
-
-<p>
-  <%= @project.description %>
-</p>
+<p><h1><%= @project.name %></h1></p>
+<p><strong>Project Leader:</strong> <%= @project.user.email %></p>
+<p><%= @project.description %></p>
 
 <% if current_user == @project.user %>
-  <%= link_to 'Edit', edit_project_path(@project) %> 
+  <%= link_to 'Edit', edit_project_path %> 
 <% end %>
+
+<br><br><br><br>
+
+<%= render template: 'project_users/index' %>
+
