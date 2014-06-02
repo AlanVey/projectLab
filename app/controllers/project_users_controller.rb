@@ -1,7 +1,7 @@
 class ProjectUsersController < ApplicationController
   before_filter :user_not_signed_in
   before_action :set_project
-  before_action :set_project_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_user, only: [:show, :destroy]
 
   # GET /project_users
   # GET /project_users.json
@@ -24,14 +24,21 @@ class ProjectUsersController < ApplicationController
   # POST /project_users.json
   def create
     @project_user = @project.project_users.new(project_user_params)
+    @project_user_tmp = User.find_by(email: @project_user.email)
 
-    respond_to do |format|
-      if @project_user.save
-        format.html { redirect_to project_project_user_path(@project, @project_user), notice: 'Project user was successfully created.' }
-        format.json { render :show, status: :created, location: @project_user }
-      else
-        format.html { render :new }
-        format.json { render json: @project_user.errors, status: :unprocessable_entity }
+    if @project_user_tmp.nil? or !@project.project_users.find_by(email: @project_user.email).nil?
+      redirect_to new_project_project_user_path(@project, @project_user), notice: 'Project user is either already a team member or is not registered.'
+    else
+      @project_user.user_id = @project_user_tmp.id
+      @project_user.project_id = @project.id
+      respond_to do |format|
+        if @project_user.save
+          format.html { redirect_to @project, notice: 'Project user was successfully added.' }
+          format.json { render :show, status: :created, location: @project_user }
+        else
+          format.html { render :new }
+          format.json { render json: @project_user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -39,7 +46,7 @@ class ProjectUsersController < ApplicationController
   # DELETE /project_users/1
   # DELETE /project_users/1.json
   def destroy
-    @project_user.destroy
+    @project_user.first.destroy
     respond_to do |format|
       format.html { redirect_to @project, notice: 'Project user was successfully removed.' }
       format.json { head :no_content }
@@ -47,12 +54,6 @@ class ProjectUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_user
-      @project_user = ProjectUser.where(project_id: @project.id)
-    end
-
-    # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:project_id])
     end

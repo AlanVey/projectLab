@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
       redirect_to projects_path, notice: 'Only the project owner can make changes.'
     end
   end
+
+  def set_project_user
+    @project_user = ProjectUser.where(project: @project)
+  end
 end

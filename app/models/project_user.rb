@@ -1,4 +1,8 @@
 class ProjectUser < ActiveRecord::Base
   belongs_to :project
-  validates_presence_of :email
+  has_one :user
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+
 end

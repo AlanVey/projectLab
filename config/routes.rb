@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :project_users
 
   resources :projects do
     resources :project_users
