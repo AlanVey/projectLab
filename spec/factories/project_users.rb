@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :project_user do
-    email "MyString"
-    project_id 1
+    email "test@gmail.com"
+    association :project
+    user_id 1
   end
 end

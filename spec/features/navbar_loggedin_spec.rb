@@ -45,6 +45,6 @@ feature 'View a page with the navbar when signed in' do
   end
 
   # Add code when OT finishes his part
-  scenario 'and click edit' 
+  scenario 'and click edit (Octavians implementation)' 
 
 end
