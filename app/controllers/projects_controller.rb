@@ -9,9 +9,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.where(user: current_user)
     ProjectUser.where(user_id: current_user).each do |pjuser|
-      Project.where(id: pjuser.project_id).each do |pj|
-        @projects << pj
-      end
+      Project.where(id: pjuser.project_id).each { |pj| @projects << pj }
     end 
     
   end
