@@ -9,19 +9,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def user_signed_in
-    if user_signed_in?
-      redirect_to projects_path
-    end
-  end
-
   def user_is_project_owner
     if current_user != Project.find(params[:id]).user
       redirect_to projects_path, notice: 'Only the project owner can make changes.'
     end
   end
 
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
   def set_project_user
-    @project_user = ProjectUser.where(project: @project)
+    @project_user = ProjectUser.where(project_id: @project.id)
+  end
+
+  def set_milestone
+    @milestone = Milestone.find(params[:id])
   end
 end

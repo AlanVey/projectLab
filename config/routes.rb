@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :project_users
+    resources :milestones
   end
 
   root to: 'home#index'

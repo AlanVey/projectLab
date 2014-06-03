@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ProjectUser do
+describe Milestone do
 
 end

@@ -54,10 +54,6 @@ class ProjectUsersController < ApplicationController
   end
 
   private
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_user_params
       params.require(:project_user).permit(:email, :project_id)
