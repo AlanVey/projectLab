@@ -38,6 +38,7 @@ end
 group :test, :development do 
   gem "factory_girl_rails"
   gem 'rspec-rails'
+  # to generate graphical model relationships
   gem 'rails-erd'
 end
 

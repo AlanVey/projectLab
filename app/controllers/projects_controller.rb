@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :user_not_signed_in
-  before_filter :user_is_project_owner, only: [:show, :edit, :update, :destroy]
+  before_filter :user_is_project_owner, only: [:edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_project_user, only: [:show]
 
@@ -8,6 +8,12 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.where(user: current_user)
+    ProjectUser.where(user_id: current_user).each do |pjuser|
+      Project.where(id: pjuser.project_id).each do |pj|
+        @projects << pj
+      end
+    end 
+    
   end
 
   # GET /projects/1
