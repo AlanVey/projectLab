@@ -19,7 +19,7 @@
           <td><%= link_to milestone.name, project_milestone_path(@project, milestone) %></td>
           <td><%= milestone.due_date %></td>
           <td><%= milestone.status %></td>
-          <td><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure? All associated tasks will be deleted too.' } %></td>
         </tr>
       <% end %>
     </tbody>

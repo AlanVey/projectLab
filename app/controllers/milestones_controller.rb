@@ -7,6 +7,8 @@ class MilestonesController < ApplicationController
   # GET /milestones.json
   def index
     redirect_to @project
+    # Add functionality for updating milestone status based on tasks
+    # Add functionality for completion date
   end
 
   # GET /milestones/1
@@ -28,7 +30,7 @@ class MilestonesController < ApplicationController
   def create
     @milestone = @project.milestones.new(milestone_params)
     @milestone.project_id = @project.id
-    @milestone.status = "Pending"
+    @milestone.status = "Created"
 
     respond_to do |format|
       if @milestone.save
