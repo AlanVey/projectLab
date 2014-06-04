@@ -14,6 +14,7 @@ class MilestonesController < ApplicationController
   # GET /milestones/1
   # GET /milestones/1.json
   def show
+    @tasks = Task.where(milestone_id: @milestone.id)
   end
 
   # GET /milestones/new
@@ -68,6 +69,9 @@ class MilestonesController < ApplicationController
   end
 
   private
+    def set_milestone
+      @milestone = Milestone.find(params[:id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def milestone_params
       params.require(:milestone).permit(:due_date, :name)

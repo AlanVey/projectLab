@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2>Task: <%= @task.name %></h2>
+</p>
+
+<p>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @task.user_email %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task.status %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @task.difficulty %>
+  <strong>Priority:</strong>
+  <%= @task.priority %>
+</p>
+
+<%= link_to 'Edit', edit_project_milestone_task_path(@project, @milestone, @task) %> |
+<%= link_to 'Back', project_milestone_tasks_path(@project, @milestone) %>

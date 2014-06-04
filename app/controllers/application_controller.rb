@@ -22,8 +22,5 @@ class ApplicationController < ActionController::Base
   def set_project_user
     @project_user = ProjectUser.where(project_id: @project.id)
   end
-
-  def set_milestone
-    @milestone = Milestone.find(params[:id])
-  end
+  
 end

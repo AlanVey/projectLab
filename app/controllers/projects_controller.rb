@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :user_not_signed_in
   before_filter :user_is_project_owner, only: [:edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_user, only: :show
   before_filter :user_is_project_user_or_owner, only: :show
 
   # GET /projects
@@ -17,7 +18,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    set_project_user
     @milestones = Milestone.where(project_id: @project.id)
   end
 

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  root to: 'home#index'
+
   resources :projects do
     resources :project_users
-    resources :milestones
+    resources :milestones do
+      resources :tasks
+    end
   end
-
-  root to: 'home#index'
 
   devise_for :user, :path => '', :path_names => { :users => "/" }
 
