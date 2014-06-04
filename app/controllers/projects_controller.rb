@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :user_not_signed_in
   before_filter :user_is_project_owner, only: [:edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_filter :user_is_project_user_or_owner, only: :show
 
   # GET /projects
   # GET /projects.json
@@ -78,4 +79,17 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description)
     end
+
+    def user_is_project_user_or_owner
+      @project_user_or_owner = false
+
+      if current_user.email == @project.user.email
+        @project_user_or_owner = true
+      else  
+        @project.project_users.each {|pjuser| @project_user_or_owner = true if pjuser.user_id == current_user.id}
+      end
+
+      redirect_to projects_path if !@project_user_or_owner
+    end
+
 end

@@ -26,7 +26,7 @@ class ProjectUsersController < ApplicationController
     @project_user = @project.project_users.new(project_user_params)
     @project_user_tmp = User.find_by(email: @project_user.email)
 
-    if @project_user_tmp.nil? or !@project.project_users.find_by(email: @project_user.email).nil?
+    if @project_user_tmp.nil? or !@project.project_users.find_by(email: @project_user.email).nil? or @project_user_tmp.id == @project.user_id
       redirect_to new_project_project_user_path(@project, @project_user), notice: 'Project user is either already a team member or is not registered.'
     else
       @project_user.user_id = @project_user_tmp.id
