@@ -14,7 +14,7 @@ class MilestonesController < ApplicationController
   # GET /milestones/1
   # GET /milestones/1.json
   def show
-    @tasks = Task.where(milestone_id: @milestone.id)
+    @tasks = Task.where(milestone_id: @milestone.id).order(:priority)
   end
 
   # GET /milestones/new
