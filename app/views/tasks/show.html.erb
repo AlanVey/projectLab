@@ -9,9 +9,16 @@
 </p>
 
 <p>
-  <strong>Owner:</strong>
+  <strong>Creator:</strong>
   <%= @task.user_email %>
 </p>
+
+<% if !@task.owner_email.nil? %>
+  <p>
+    <strong>Owner:</strong>
+    <%= @task.owner_email %>
+  </p>
+<% end %>
 
 <p>
   <strong>Status:</strong>

@@ -73,6 +73,7 @@ class TasksController < ApplicationController
 
   def start_status
     @task.status = 'Started'
+    @task.owner_email = current_user.email
     @task.save
     redirect_to project_milestone_path(@project, @milestone)
   end

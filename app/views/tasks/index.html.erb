@@ -25,9 +25,9 @@ Your milestone requires some planning! <br>
           <td><%= task.status %></td>
           <% if task.status == 'Created' %>
             <td><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
-          <% elsif task.status == 'Started' %>
+          <% elsif task.status == 'Started' && current_user.email == task.owner_email%>
             <td><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
-          <% elsif task.status == 'Pending Review' %>
+          <% elsif task.status == 'Pending Review' && current_user.email == task.user_email%>
             <td><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
           <% end %>
           <td><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
