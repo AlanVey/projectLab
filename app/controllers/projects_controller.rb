@@ -19,13 +19,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @milestones = Milestone.where(project_id: @project.id)
-    @milestones.each do |milestone|
-      @statuses = Array.new
-      milestone.tasks.each {|task| @statuses << task.status}
-      milestone.status = 'Started' if @statuses.include?('Started')
-      milestone.status = 'Pending review' if @statuses.count('Pending Review') == @statuses.size
-      milestone.status = 'Completed' if @statuses.count('Completed') == @statuses.size
-    end
   end
 
   # GET /projects/new

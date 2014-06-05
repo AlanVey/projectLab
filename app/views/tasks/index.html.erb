@@ -23,6 +23,13 @@ Your milestone requires some planning! <br>
           <td><%= task.difficulty %></td>
           <td><%= task.priority %></td>
           <td><%= task.status %></td>
+          <% if task.status == 'Created' %>
+            <td><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% elsif task.status == 'Started' %>
+            <td><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% elsif task.status == 'Pending Review' %>
+            <td><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% end %>
           <td><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
         </tr>
       <% end %>

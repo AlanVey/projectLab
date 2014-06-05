@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_filter :user_not_signed_in
   before_action :set_project
   before_action :set_milestone
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, except: [:create, :new, :index]
 
   # GET /tasks
   # GET /tasks.json
@@ -69,6 +69,24 @@ class TasksController < ApplicationController
       format.html { redirect_to project_milestone_path(@project, @milestone), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def start_status
+    @task.status = 'Started'
+    @task.save
+    redirect_to project_milestone_path(@project, @milestone)
+  end
+
+  def review_status
+    @task.status = 'Pending Review'
+    @task.save
+    redirect_to project_milestone_path(@project, @milestone)
+  end
+
+  def complete_status
+    @task.status = 'Completed'
+    @task.save
+    redirect_to project_milestone_path(@project, @milestone)
   end
 
   private
