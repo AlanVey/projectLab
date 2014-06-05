@@ -6,5 +6,6 @@ FactoryGirl.define do
     completion_date "2014-06-03"
     name "MyString"
     status "Created"
+    association :project
   end
 end
