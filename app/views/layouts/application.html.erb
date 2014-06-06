@@ -38,37 +38,46 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">Pjmanagement</a>
-          <div class="container nav-collapse">
-            <ul class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to current_user.email, edit_user_registration_path  %></li>
-                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete  %></li>
-              <% else %>
-                <li><%= link_to "Log In", new_user_session_path  %></li>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/">Pjmanagement</a>
+        <div class="container nav-collapse">
+          <ul class="nav pull-right">
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.email, edit_user_registration_path  %></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, method: :delete  %></li>
+            <% else %>
+              <li><%= link_to "Log In", new_user_session_path  %></li>
+            <% end %>
+          </ul>
+          <ul class="nav pull-left">
+              <% if request.original_url =~ /\/projects\/[0-9]+/ %>
+                <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
+                <li><%= link_to "Edit", ''  %></li>
               <% end %>
-            </ul>
-            <ul class="nav pull-left">
-                <% if request.original_url =~ /\/projects\/[0-9]+/ %>
-                  <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
-                  <li><%= link_to "Edit", ''  %></li>
-                <% end %>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
+  </div>
 
     <div class="container">
         <div class="row">
+
+          <% flash.each do |name, msg| %>
+
+            <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+              <a class="close" data-dismiss="alert">×</a>
+              <%= msg %>
+            </div>
+          <% end %>
+
           <%= bootstrap_flash %>
           <%= yield %>
         </div><!--/row-->

@@ -8,11 +8,19 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.where(user: current_user)
+
+
+
+    @search = Project.where(user: current_user).search do
+      fulltext params[:search]
+    end
+    @projects = @search.results
+
+    #@projects = Project.where(user: current_user)
     ProjectUser.where(user_id: current_user).each do |pjuser|
       Project.where(id: pjuser.project_id).each { |pj| @projects << pj }
     end 
-    
+
   end
 
   # GET /projects/1
