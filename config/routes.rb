@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   resources :projects do
     resources :project_users
     resources :milestones do
-      resources :tasks
+      resources :tasks do
+        member do
+          get 'start_status'
+          get 'review_status'
+          get 'complete_status'
+        end
+      end
     end
   end
 

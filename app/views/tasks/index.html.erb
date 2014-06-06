@@ -7,10 +7,10 @@ Your milestone requires some planning! <br>
     <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
         <th>Creator</th>
         <th>Difficulty</th>
         <th>Priority</th>
+        <th>Status</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -19,10 +19,17 @@ Your milestone requires some planning! <br>
       <% @tasks.each do |task| %>
         <tr>
           <td><%= link_to task.name, project_milestone_task_path(@project, @milestone, task) %></td>
-          <td><%= task.description %></td>
           <td><%= task.user_email %></td>
           <td><%= task.difficulty %></td>
           <td><%= task.priority %></td>
+          <td><%= task.status %></td>
+          <% if task.status == 'Created' %>
+            <td><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% elsif task.status == 'Started' && current_user.email == task.owner_email%>
+            <td><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% elsif task.status == 'Pending Review' && current_user.email == task.user_email%>
+            <td><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
+          <% end %>
           <td><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
         </tr>
       <% end %>

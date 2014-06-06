@@ -14,7 +14,8 @@ class MilestonesController < ApplicationController
   # GET /milestones/1
   # GET /milestones/1.json
   def show
-    @tasks = Task.where(milestone_id: @milestone.id)
+    update_milestone_status
+    @tasks = Task.where(milestone_id: @milestone.id).order(:priority)
   end
 
   # GET /milestones/new
@@ -69,6 +70,26 @@ class MilestonesController < ApplicationController
   end
 
   private
+    
+    def update_milestone_status
+      @statuses = Array.new
+      @status = @milestone.status
+      @milestone.tasks.each {|task| @statuses << task.status}
+
+      if @statuses.size == 0 or @statuses.count('Created') == @statuses.size
+        @milestone.status = 'Created'
+      elsif (@statuses.count {|s| s == 'Pending Review' || s == 'Completed'}) != @statuses.size
+        @milestone.status = 'Started' 
+      elsif @statuses.count('Completed') != @statuses.size
+        @milestone.status = 'Pending Review'
+      elsif @milestone.status != 'Completed'
+        @milestone.status = 'Completed'
+        @milestone.completion_date = Date.today
+      end 
+
+      @milestone.save if @milestone.status != @status 
+    end
+
     def set_milestone
       @milestone = Milestone.find(params[:id])
     end

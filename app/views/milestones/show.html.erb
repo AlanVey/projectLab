@@ -9,10 +9,12 @@
   <%= @milestone.due_date %>
 </p>
 
-<p>
-  <strong>Completion date:</strong>
-  <%= @milestone.completion_date %>
-</p>
+<% if !@milestone.completion_date.nil? %>
+  <p>
+    <strong>Completion date:</strong>
+    <%= @milestone.completion_date %>
+  </p>
+<% end %>
 
 <p>
   <strong>Status:</strong>

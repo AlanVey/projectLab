@@ -9,9 +9,16 @@
 </p>
 
 <p>
-  <strong>Owner:</strong>
+  <strong>Creator:</strong>
   <%= @task.user_email %>
 </p>
+
+<% if !@task.owner_email.nil? %>
+  <p>
+    <strong>Owner:</strong>
+    <%= @task.owner_email %>
+  </p>
+<% end %>
 
 <p>
   <strong>Status:</strong>
@@ -19,11 +26,12 @@
 </p>
 
 <p>
-  <strong>Difficulty:</strong>
-  <%= @task.difficulty %>
   <strong>Priority:</strong>
   <%= @task.priority %>
+  <strong>Difficulty:</strong>
+  <%= @task.difficulty %>
 </p>
 
+<br><br>
 <%= link_to 'Edit', edit_project_milestone_task_path(@project, @milestone, @task) %> |
 <%= link_to 'Back', project_milestone_tasks_path(@project, @milestone) %>
