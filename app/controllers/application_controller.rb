@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
     @project = Project.find(params[:project_id])
   end
 
+  def set_milestone
+    @milestone = Milestone.find(params[:milestone_id])
+  end
+
+  def set_task
+    @task = Task.find(params[:task_id])
+  end
+
   def set_project_user
     @project_user = ProjectUser.where(project_id: @project.id)
   end

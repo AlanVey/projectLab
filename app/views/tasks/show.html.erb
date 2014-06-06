@@ -31,7 +31,8 @@
   <strong>Difficulty:</strong>
   <%= @task.difficulty %>
 </p>
-
-<br><br>
 <%= link_to 'Edit', edit_project_milestone_task_path(@project, @milestone, @task) %> |
 <%= link_to 'Back', project_milestone_tasks_path(@project, @milestone) %>
+
+<br><br>
+<%= render template: 'comments/index' %>

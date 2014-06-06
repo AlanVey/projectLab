@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :project_users
     resources :milestones do
       resources :tasks do
+        resources :comments
         member do
           get 'start_status'
           get 'review_status'

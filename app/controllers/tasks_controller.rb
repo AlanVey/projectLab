@@ -13,6 +13,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @comments = Comment.where(task: @task)
   end
 
   # GET /tasks/new
@@ -94,10 +95,6 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
-    end
-
-    def set_milestone
-      @milestone = Milestone.find(params[:milestone_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
