@@ -30,6 +30,12 @@ gem 'spring',        group: :development
 #form design
 gem 'simple_form'
 
+#creates search bar
+gem 'sunspot_rails'
+group :development do
+  gem 'sunspot_solr'
+end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
