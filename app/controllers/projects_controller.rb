@@ -8,9 +8,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-
-
-
     @search = Project.where(user: current_user).search do
       fulltext params[:search]
     end
