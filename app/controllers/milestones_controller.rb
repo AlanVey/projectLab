@@ -7,8 +7,6 @@ class MilestonesController < ApplicationController
   # GET /milestones.json
   def index
     redirect_to @project
-    # Add functionality for updating milestone status based on tasks
-    # Add functionality for completion date
   end
 
   # GET /milestones/1
