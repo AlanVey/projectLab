@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>User</th>
+        <th>Created At</th>
         <th>Comment</th>
         <th colspan="3"></th>
       </tr>
@@ -14,6 +15,7 @@
       <% @comments.each do |comment| %>
         <tr>
           <td><%= comment.creator_email %></td>
+          <td><%= comment.created_at %></td>
           <td><%= comment.comment %></td>
           <% if current_user.email == comment.creator_email %>
             <td><%= link_to 'Remove', project_milestone_task_comment_path(@project, @milestone, @task, comment), method: :delete %></td>

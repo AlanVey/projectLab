@@ -44,6 +44,7 @@ class TasksController < ApplicationController
           format.html { render :new }
           format.json { render json: @task.errors, status: :unprocessable_entity }
         end
+        Comment.create(comment: "#{@task.name} was created", task_id: @task.id, creator_email: current_user.email)
       end
     end
   end
@@ -76,18 +77,21 @@ class TasksController < ApplicationController
     @task.status = 'Started'
     @task.owner_email = current_user.email
     @task.save
+    Comment.create(comment: "#{@task.name} has been started by #{@current_user.email}", task_id: @task.id, creator_email: current_user.email)
     redirect_to project_milestone_path(@project, @milestone)
   end
 
   def review_status
     @task.status = 'Pending Review'
     @task.save
+    Comment.create(comment: "#{@task.name} has been finished by #{@current_user.email} and is awaiting review by #{@task.user_email}", task_id: @task.id, creator_email: current_user.email)
     redirect_to project_milestone_path(@project, @milestone)
   end
 
   def complete_status
     @task.status = 'Completed'
     @task.save
+    Comment.create(comment: "#{@task.name} is completed", task_id: @task.id, creator_email: current_user.email)
     redirect_to project_milestone_path(@project, @milestone)
   end
 
