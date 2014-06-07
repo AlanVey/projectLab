@@ -1,0 +1,28 @@
+<h4>Listing Files</h4>
+
+<% if @etherpads.count == 0 %>
+  Your project has no files. Get started! <br>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Creator</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @etherpads.each do |etherpad| %>
+        <tr>
+          <td><%= link_to etherpad.name, project_etherpad_path(@project, etherpad) %></td>
+          <td><%= etherpad.creator %></td>
+          <td><%= link_to 'Edit', edit_project_etherpad_path(@project, etherpad) %></td>
+          <td><%= link_to 'Destroy', project_etherpad_path(@project, etherpad), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to 'New Etherpad', new_project_etherpad_path(@project) %>

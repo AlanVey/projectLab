@@ -30,5 +30,16 @@ class ApplicationController < ActionController::Base
   def set_project_user
     @project_user = ProjectUser.where(project_id: @project.id)
   end
-  
+
+  def user_is_project_user_or_owner
+    @project_user_or_owner = false
+
+    if current_user.email == @project.user.email
+      @project_user_or_owner = true
+    else  
+      @project.project_users.each {|pjuser| @project_user_or_owner = true if pjuser.user_id == current_user.id}
+    end
+
+    redirect_to projects_path if !@project_user_or_owner
+  end  
 end

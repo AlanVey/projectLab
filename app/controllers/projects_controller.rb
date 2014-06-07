@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @milestones = Milestone.where(project_id: @project.id)
+    @etherpads = Etherpad.where(project_id: @project.id)
   end
 
   # GET /projects/new
@@ -78,18 +79,6 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description)
-    end
-
-    def user_is_project_user_or_owner
-      @project_user_or_owner = false
-
-      if current_user.email == @project.user.email
-        @project_user_or_owner = true
-      else  
-        @project.project_users.each {|pjuser| @project_user_or_owner = true if pjuser.user_id == current_user.id}
-      end
-
-      redirect_to projects_path if !@project_user_or_owner
     end
 
 end
