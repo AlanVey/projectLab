@@ -30,7 +30,7 @@ class EtherpadsController < ApplicationController
   def create
     @etherpad = @project.etherpads.new(etherpad_params)
     @etherpad.creator = current_user.email
-    @etherpad.file = "https://beta.etherpad.org/" + SecureRandom.hex
+    @etherpad.file = "https://pad.fnordig.de/p/" + SecureRandom.hex
 
     respond_to do |format|
       if @etherpad.save

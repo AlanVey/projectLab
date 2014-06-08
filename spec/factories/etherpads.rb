@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "MyString"
     file "MyString"
     creator "MyString"
+    project_id 1
   end
 end

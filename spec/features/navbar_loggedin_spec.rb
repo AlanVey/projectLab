@@ -44,7 +44,4 @@ feature 'View a page with the navbar when signed in' do
     current_path.should eq(@prev_path)
   end
 
-  # Add code when OT finishes his part
-  scenario 'and click edit (Octavians implementation)' 
-
 end
