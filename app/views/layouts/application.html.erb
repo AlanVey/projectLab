@@ -57,10 +57,11 @@
             <% end %>
           </ul>
           <ul class="nav pull-left">
-              <% if request.original_url =~ /\/projects\/[0-9]+/ %>
-                <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
-                <li><%= link_to "Edit", ''  %></li>
-              <% end %>
+            <% if request.original_url =~ /\/projects\/[0-9]+/ %>
+              <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
+              <li><%= link_to "Management", "/projects/#{@project.id}/milestones"  %></li>
+              <li><%= link_to "Creation", "/projects/#{@project.id}/etherpads"  %></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

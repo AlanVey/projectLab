@@ -6,7 +6,7 @@ class MilestonesController < ApplicationController
   # GET /milestones
   # GET /milestones.json
   def index
-    redirect_to @project
+    @milestones = Milestone.where(project_id: @project.id)
   end
 
   # GET /milestones/1

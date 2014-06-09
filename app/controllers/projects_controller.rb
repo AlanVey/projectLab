@@ -18,8 +18,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @milestones = Milestone.where(project_id: @project.id)
-    @etherpads = Etherpad.where(project_id: @project.id)
   end
 
   # GET /projects/new

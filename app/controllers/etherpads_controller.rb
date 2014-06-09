@@ -8,7 +8,7 @@ class EtherpadsController < ApplicationController
   # GET /etherpads
   # GET /etherpads.json
   def index
-    redirect_to :back
+    @etherpads = Etherpad.where(project_id: @project.id)
   end
 
   # GET /etherpads/1
@@ -34,7 +34,7 @@ class EtherpadsController < ApplicationController
 
     respond_to do |format|
       if @etherpad.save
-        format.html { redirect_to @project, notice: 'Etherpad was successfully created.' }
+        format.html { redirect_to project_etherpads_path(@project), notice: 'Etherpad was successfully created.' }
         format.json { render :show, status: :created, location: @etherpad }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class EtherpadsController < ApplicationController
   def update
     respond_to do |format|
       if @etherpad.update(etherpad_params)
-        format.html { redirect_to @project, notice: 'Etherpad was successfully updated.' }
+        format.html { redirect_to project_etherpads_path(@project), notice: 'Etherpad was successfully updated.' }
         format.json { render :show, status: :ok, location: @etherpad }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class EtherpadsController < ApplicationController
   def destroy
     @etherpad.destroy
     respond_to do |format|
-      format.html { redirect_to @project, notice: 'Etherpad was successfully destroyed.' }
+      format.html { redirect_to project_etherpads_path(@project), notice: 'Etherpad was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
