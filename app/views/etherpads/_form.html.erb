@@ -1,7 +1,7 @@
 <%= form_for [@project, @etherpad] do |f| %>
   <% if @etherpad.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@etherpad.errors.count, "error") %> prohibited this etherpad from being saved:</h2>
+      <h2><%= pluralize(@etherpad.errors.count, "error") %> prohibited this file from being saved:</h2>
 
       <ul>
       <% @etherpad.errors.full_messages.each do |message| %>
