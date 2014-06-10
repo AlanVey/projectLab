@@ -1,14 +1,34 @@
-<%= simple_form_for(@project, html:{class: 'form horizontal'}) do |f| %>
+<%= form_for(@project) do |f| %>
 
-  <fieldset>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project_user from being saved:</h2>
 
-    <%= f.input :name %>
-    <%= f.input :description %>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', projects_path, :class => 'btn' %>
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
-  </fieldset>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <% if request.original_url =~ /\/projects\/new/ %>
+      <%= link_to 'Cancel', projects_path, :class => 'btn' %>
+    <% else %>
+      <%= link_to 'Cancel', project_path(@project), :class => 'btn' %>
+    <% end %>
+  </div>
 
 <% end %>
