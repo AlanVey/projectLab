@@ -46,8 +46,8 @@ class Burndown_chart
         end
 
         # Creating actual line points
-        if(task_latest_updated_at < date - 1)
-          constant_dec = task_difficulty_completed_by(date) - (date - task_latest_updated_at).to_i
+        if(task_latest_updated_at < date + 1)
+          constant_dec = task_difficulty_completed_by(date) - (date - 1 - task_latest_updated_at).to_i
           if constant_dec > 0
             table.set_cell(i, 2, constant_dec)
           else
