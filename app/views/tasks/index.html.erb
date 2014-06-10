@@ -18,19 +18,19 @@ Your milestone requires some planning! <br>
     <tbody>
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= link_to task.name, project_milestone_task_path(@project, @milestone, task) %></td>
-          <td><%= task.user_email %></td>
-          <td><%= task.difficulty %></td>
-          <td><%= task.priority %></td>
-          <td><%= task.status %></td>
+          <td class="vert-align"><%= link_to task.name, project_milestone_task_path(@project, @milestone, task) %></td>
+          <td class="vert-align"><%= task.user_email %></td>
+          <td class="vert-align"><%= task.difficulty %></td>
+          <td class="vert-align"><%= task.priority %></td>
+          <td class="vert-align"><%= task.status %></td>
           <% if task.status == 'Created' %>
-            <td><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
           <% elsif task.status == 'Started' && current_user.email == task.owner_email%>
-            <td><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
           <% elsif task.status == 'Pending Review' && current_user.email == task.user_email%>
-            <td><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
           <% end %>
-          <td><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
+          <td class="vert-align"><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
         </tr>
       <% end %>
     </tbody>

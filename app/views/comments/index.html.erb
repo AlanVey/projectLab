@@ -14,11 +14,11 @@
     <tbody>
       <% @comments.each do |comment| %>
         <tr>
-          <td><%= comment.creator_email %></td>
-          <td><%= comment.created_at %></td>
-          <td><%= comment.comment %></td>
+          <td class="vert-align"><%= comment.creator_email %></td>
+          <td class="vert-align"><%= comment.created_at %></td>
+          <td class="vert-align"><%= comment.comment %></td>
           <% if current_user.email == comment.creator_email %>
-            <td><%= link_to 'Remove', project_milestone_task_comment_path(@project, @milestone, @task, comment), method: :delete %></td>
+            <td class="vert-align"><%= link_to 'Remove', project_milestone_task_comment_path(@project, @milestone, @task, comment), method: :delete %></td>
           <% end %>
         </tr>
       <% end %>

@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 20140607150607) do
     t.datetime "updated_at"
   end
 
-  create_table "documents", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-  end
-
   create_table "etherpads", force: true do |t|
     t.string   "name"
     t.string   "file"
