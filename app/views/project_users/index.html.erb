@@ -3,19 +3,19 @@
 <% if @project_user.count == 0 %>
   You are currently working alone<br>
 <% else %>
-  <table class="table">
+  <table class="table table-hover table-striped table-bordered">
     <thead>
     </thead>
 
     <tbody>
       <% @project_user.each do |project_user| %>
         <tr>
-          <td><%= project_user.email %></td>
+          <td class="vert-align"><%= project_user.email %></td>
           <% if current_user == @project.user %>
-            <td><%= link_to('Remove', project_project_user_path(@project, project_user), method: :delete)%></td>
+            <td class="vert-align"><%= link_to('Remove', project_project_user_path(@project, project_user), method: :delete)%></td>
           <% end %>
           <% if current_user.email == project_user.email %>
-            <td><%= link_to('Remove', project_project_user_path(@project, project_user), method: :delete)%></td>
+            <td class="vert-align"><%= link_to('Remove', project_project_user_path(@project, project_user), method: :delete)%></td>
           <% end %>
         </tr>
       <% end %>

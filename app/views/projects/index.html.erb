@@ -1,7 +1,7 @@
 <h1>Listing projects</h1>
 
 <div class="table-responsive">
-  <table class="table table-hover">
+  <table class="table table-hover table-striped table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -13,12 +13,13 @@
     <tbody>
       <% @projects.each do |project| %>
         <tr>
-          <td><%= link_to project.name, project %></td>
-          <td><%= project.description %></td>
-          <% if current_user == project.user %>
-            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </td>
-          <% end %>
+          <td class="vert-align"> <%= link_to project.name, project %></td>
+          <td class="vert-align"> <%= project.description %></td>
+          <td class="vert-align">
+            <% if current_user == project.user %>
+                <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
