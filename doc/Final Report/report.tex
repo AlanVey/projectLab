@@ -8,7 +8,6 @@
 
 \begin{document}
 
-
 \title{Webapps Project 2014: Final Report}
 
 \author{Alan Vey, Octavian Tuchila, Sean Naderi}
@@ -50,17 +49,20 @@ From this point onwards any new functionality Alan added was done on a separate 
 Octavian would branch every time new functionality was added to manage the design of that part of the newly added components and merge with master when he was done. 
 Sean would await the completion of functionality at which point he branched off and conducted modular testing of the models, merging back in when done and branch off again when the design was done to conduct integration testing again merging his work back to master upon completion. 
 
-At the beginning of the project we thought of the milestones that were required and set them up on Gitlab. We subsequently added issues when they arose or we started working on a new section, assigning them to whoever we felt was best equipped to deal with them and allocating them to a milestone. This was very useful to know exactly who was working on what and making sure any problems a team member discovered were addressed by the appropriate party.
-
-
-\includegraphics[width=450, height=200]{gitlab-milestones.png}
-\clearpage
+At the beginning of the project we thought of the milestones that were required and set them up on Gitlab [Figure~\ref{fig:Github}]. We subsequently added issues when they arose or we started working on a new section, assigning them to whoever we felt was best equipped to deal with them and allocating them to a milestone. This was very useful to know exactly who was working on what and making sure any problems a team member discovered were addressed by the appropriate party. 
 
 During the feedback for our Milestone 1 review, Mark suggested we use our site to plan a part of this project. We really liked the idea and decided to plan the presentation with it writing up all supporting documentation on our collaborative real-time software. This was not only useful for the organisation of the presentation but allowed us to find minor bugs and improvements for our site. 
 
 We usually met every two to three days to make sure the project was on track and do any of the additional tasks as well as help each other out with what we had learned. Sean would record meeting minutes and send everyone a copy on our Facebook group if required. Octavian took a keen interest in the legal aspects and helped Sean and Alan gain a better understanding after some research he had conducted. The meetings were planned using a Facebook group chat which also served as a useful tool for sharing links we found important and helping each other out with any issues we came across that we did not need to meet for.
 
 All in all we feel this project has been a success as we have overcome many difficulties we encountered in previous tasks we completed together such as code duplication, missing deadlines, under performing and not helping each other adequately. We will definitely be planning future tasks in much more detail as we have done with this one and have all learned a lot about all the software we used to facilitate this.
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{gitlab-milestones.png}
+\caption{Overview of milestones on June 10, 2014}
+\label{fig:Github}
+\end{figure}
+
 \clearpage
 
 \section{Program Description}
@@ -135,7 +137,7 @@ such derivative works, in source code and object code form.
 
 \section{Conclusion}
 
-\subsection{What we have done}
+\subsection{Our project}
 We have managed to successfully design a fully functional project management and real-time collaborative editing tool. We have user authentication, the functionality for project creation and a  split of every project into the categories of overview, management and editing. 
 
 When navigating to our site one lands on the home page and can access no more until authenticated. Upon successful login the home page is no longer accessible and by default the root is set to a page listing all projects one has created or is a team member of. Clicking on any project name leads to the show page and results in a new navbar with the three categories for project design.
@@ -146,7 +148,7 @@ The management page, accessible from the secondary navbar, displays a listing of
 
 The edit page contains a listing of file names and allows for the creation of additional ones. Once created, clicking on a file navigates to its respective show page which loads up the file in editing software and allows any team member working on the file to do so simultaneously, all of which is visible to ever user on the page in real-time. This software incorporates chat functionality as well as the optional download of the file. 
 
-\subsection{What we would like to have done}
+\subsection{Possibilities for improvement}
 There are very many things we would have liked to add to our website, the main five being:
 \begin{itemize}
   \item Help and supporting documentation
@@ -163,11 +165,20 @@ User profiles is also a key element for improvement. Tracking the quality of use
 
 Email notifications are also very necessary, whether its providing updates of whats happening on projects one is part of, notification of received private messages or later notifying users of potential project prospects or suggesting team members to creators.
  
-\subsection{What we have learned}
+\subsection{Learning aspects}
+Because Rails incorporates the basics of CSS/CSSASS, HTML and embedding, JavaScript/CoffeeScript and obviously Ruby, using the framework provided us with a substantial understanding of these tools and how to incorporate them into the framework itself. 
 
-\subsection{What we would do differently in future projects}
+Furthermore, since Rails heavily relies on test driven development, and since RSpec was included, behaviour driven development and the MVC pattern we gained experience and knowledge regarding the application of the principles we learned in the software engineering module. Our understanding of the principals of cohesion and coupling were also improved in the creation of the interactive charting class.
 
+Besides the computing aspects we have all learned a significant amount about project management, considering the amount of research that went into creating this site. Working on this project whilst applying the learned concepts, in an attempt to provide the simplest most efficient experience possible for our users, really highlighted any mistakes we had been making and allowed us to further improve the site.
 \clearpage
+
+\subsection{Difficulties}
+The main possibility for improvement would be for all of the team to learn the framework in a lot more depth at the beginning of the project. This would have allowed every team member to contribute towards the functionality of the site and thus a shorter list of unimplemented features. It would also have allowed for team members to review and improve each others work more and so arrive at a more robust and efficient end product.
+
+Another aspect is planning. We started this project in what we thought was an organised manner, however based on what we have learned now highlights the fact that this was not quite the case. The use of planning software leads to much higher productivity and would also have lead to a shorter list of unfitted functionality. 
+
+We have worked on many projects together so had already addressed many issues like organisation leading to code duplication and inefficiency in the past. All in all we feel this project has been a great success and we have all taken away a lot from it.
 
 \begin{thebibliography}{9}
 
