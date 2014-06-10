@@ -1,4 +1,4 @@
-
+<script src='http://www.google.com/jsapi'></script>
 <p><h1><%= @project.name %></h1></p>
 <p><strong>Project Leader:</strong> <%= @project.user.email %></p>
 <p><%= @project.description %></p>
@@ -10,3 +10,7 @@
 <br><br><br>
 <%= render template: 'project_users/index' %>
 
+<% if @project.milestones.count != 0 %>
+  <div id='chart'></div>
+  <%= render_chart @chart, 'chart' %>
+<% end %>

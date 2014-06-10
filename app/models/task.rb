@@ -5,6 +5,6 @@ class Task < ActiveRecord::Base
   @valid = ['Created', 'Started', 'Pending Review', 'Completed']
 
   validates_presence_of :name, :description, :priority, :user_email, :milestone_id, :status
-  validates :difficulty, presence: true, :inclusion=> { :in => 1..4 }
+  validates :difficulty, presence: true, :inclusion=> { :in => 1..10 }
   validates :status, :inclusion=> { :in => @valid }
 end

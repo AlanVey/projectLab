@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  require 'burndown_chart.rb'
+
   before_filter :user_not_signed_in
   before_filter :user_is_project_owner, only: [:edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
@@ -18,6 +20,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    if @project.milestones.count != 0
+      @chart = Burndown_chart.create_burndown_chart(@project)
+    end
   end
 
   # GET /projects/new
@@ -78,5 +83,4 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description)
     end
-
 end

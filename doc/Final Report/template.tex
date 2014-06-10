@@ -18,36 +18,6 @@
 \clearpage
 
 \section{Introduction}
-
-This is an \emph{introductory comment}.
-\LaTeX\ can typeset some very complex documents, but it is also
-\textbf{quite easy to get started}.
-Try playing around with this file and see. 
-Don't worry that this page looks very spaced out,
-\LaTeX\ arranges the page for you (much less work to do than in Word!)
-so if there was more content it would close up the gaps.
-
-To start a new paragraph just leave a blank line.
-If you do not like numbered sections, use the \texttt{section*\{...\}}
-environment instead.
-
-\subsection{Some Code} 
-
-\begin{verbatim}
-    The verbatim environment outputs the source without changing
-    it in any way. 
-          This
-              includes line breaks
-       and indentation. 
-    It is useful to reproduce code snippets.
-\end{verbatim}
-
-To include maths formulas in text put them between \$ symbols like this
-$f(x) = x \times 5$.
-Or to display a formula on a line on its own you do this:
-\[
-    g(y) = y^2
-\]
 \clearpage
 
 \section{Project Management}
@@ -89,18 +59,88 @@ All in all we feel this project has been a success as we have overcome many diff
 \clearpage
 
 \section{Program Description}
+\subsection{Some Code} 
+
+\begin{verbatim}
+    The verbatim environment outputs the source without changing
+    it in any way. 
+          This
+              includes line breaks
+       and indentation. 
+    It is useful to reproduce code snippets.
+\end{verbatim}
+\clearpage
+
 \section{Legal Aspects}
+
+We've used the Ruby programming language, together with several ruby gems.
+These are under the Ruby Licence, which has been accepted by the Free Software
+Foundation as compatible under the GPL(General Public Licence)\cite{GNUlicence}
+but has not been accepted by the Open Source Initiative. The Ruby Licence has a
+copyleft status, which allows copying the code, as long as the application
+which is built using Ruby Licenced software is bound by the same licence. The
+Ruby software has a dual licence, both under the Ruby Licence and under the
+simplified BSD licence.
+
+If we want to publish our project, we can do so under the Ruby Licence.
+In order to do this, we have the following options:
+
+\begin{quote}
+3. You may distribute the software in object code or binary form,
+   provided that you do at least ONE of the following:
+
+a) distribute the binaries and library files of the software,
+together with instructions (in the manual page or equivalent)
+on where to get the original distribution.
+
+b) accompany the distribution with the machine-readable source of
+the software.
+
+c) give non-standard binaries non-standard names, with
+instructions on where to get the original software distribution.
+
+d) make other distribution arrangements with the author.
+     \cite{Rubylicence}
+\end{quote}
+
+In case we want to use the website commercially, we should act on clause
+d, by contacting the author of the Ruby programming language and the authors of
+the gems we have used while building our project.
+
+Another option for commercial distribution is to use JRuby instead of the Ruby
+interpretor, as it can support Rails projects and its licence is more suitable
+for commercial releases.
+
+\begin{quote}
+this license is intended to facilitate the commercial use of the Program
+\cite{JRubylicence}
+\end{quote}
+
+We can launch our project using the following clause:
+
+\begin{quote}
+a) Subject to the terms of this Agreement, each Contributor hereby grants
+Recipient a non-exclusive, worldwide, royalty-free copyright license to
+reproduce, prepare derivative works of, publicly display, publicly perform,
+distribute and sublicense the Contribution of such Contributor, if any, and
+such derivative works, in source code and object code form.
+\cite{JRubylicence}
+\end{quote}
+\clearpage
+
 \section{Conclusion}
+\clearpage
 
 \begin{thebibliography}{9}
 
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
+\bibitem{GNUlicence}
+  http://www.gnu.org/philosophy/license-list.html\#Ruby
 
+\bibitem{Rubylicence}
+  https://www.ruby-lang.org/en/about/license.txt
+
+\bibitem{JRubylicence}
+  https://github.com/jruby/jruby/blob/master/COPYING
 \end{thebibliography}
 
 \end{document}
