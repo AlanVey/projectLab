@@ -14,6 +14,9 @@ class MilestonesController < ApplicationController
   def show
     update_milestone_status
     @tasks = Task.where(milestone_id: @milestone.id).order(:priority)
+    @comments = Array.new
+    @tasks.each {|t| Comment.where(task_id: t.id).each {|c| @comments << c} }
+    @comments.sort! { |a, b| b.created_at <=> a.created_at  }
   end
 
   # GET /milestones/new
