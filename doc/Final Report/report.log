@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.24)  11 JUN 2014 20:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.24)  11 JUN 2014 20:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -172,87 +172,69 @@ Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
  [6
 
-] [7]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.116 ...method automatically assigns the creator_
-                                                  email and the associated t...
+] [7] [8
 
-? 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 116.
-! Missing $ inserted.
-<inserted text> 
-                $
-l.117 
-      
-? 
-<erd.pdf, id=30, 764.8575pt x 558.085pt>
+]
+<erd.pdf, id=33, 764.8575pt x 558.085pt>
 File: erd.pdf Graphic file (type pdf)
  <use erd.pdf>
-Package pdftex.def Info: erd.pdf used on input line 124.
+Package pdftex.def Info: erd.pdf used on input line 128.
 (pdftex.def)             Requested size: 469.75502pt x 342.76465pt.
 
-<homepage.png, id=31, 1435.3625pt x 865.2325pt>
+<homepage.png, id=34, 1435.3625pt x 865.2325pt>
 File: homepage.png Graphic file (type png)
  <use homepage.png>
-Package pdftex.def Info: homepage.png used on input line 128.
+Package pdftex.def Info: homepage.png used on input line 132.
 (pdftex.def)             Requested size: 469.75502pt x 283.16438pt.
 
 
-LaTeX Warning: Float too large for page by 71.55737pt on input line 131.
+LaTeX Warning: Float too large for page by 71.55737pt on input line 135.
 
 ! Too many }'s.
-l.131 \end{figure}}
+l.135 \end{figure}}
                    
 ? 
-[8] [9 <./erd.pdf> <./homepage.png>] [10
+[9] [10 <./erd.pdf> <./homepage.png>] [11
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 215.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 219.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 215.
- [11
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 219.
+ [12
 
 ]
-Overfull \hbox (16.05939pt too wide) in paragraph at lines 230--231
+Overfull \hbox (16.05939pt too wide) in paragraph at lines 234--235
 \OT1/cmr/m/n/10.95 Because Rails in-cor-po-rates the ba-sics of CSS/CSSASS, HTM
 L and em-bed-ding, JavaScript/CoffeeScript
  []
 
-[12] [13
+[13] [14
 
-] (./report.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 1565 strings out of 493315
- 22789 string characters out of 6137903
- 81482 words of memory out of 5000000
- 5013 multiletter control sequences out of 15000+600000
- 9195 words of font info for 32 fonts, out of 8000000 for 9000
+ 1563 strings out of 493315
+ 22753 string characters out of 6137903
+ 81483 words of memory out of 5000000
+ 5011 multiletter control sequences out of 15000+600000
+ 8836 words of font info for 31 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,6n,23p,1197b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
-cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
-al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (13 pages, 1631232 bytes).
+ 37i,6n,23p,1236b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb>
+Output written on report.pdf (14 pages, 1615467 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 109 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
