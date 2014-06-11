@@ -13,7 +13,7 @@
     <tbody>
       <% @projects.each do |project| %>
         <tr>
-          <td class="vert-align"> <%= link_to project.name, project %></td>
+          <td class="vert-align"> <%= link_to project.name, project, class: "btn btn-link" %></td>
           <td class="vert-align"> <%= project.description %></td>
           <td class="vert-align">
             <% if current_user == project.user %>
