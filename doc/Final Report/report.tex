@@ -98,6 +98,9 @@ When navigating to our home page at projectlab.herokuapp.com our routing file is
 All user authentication is handled by the devise gem. We installed the devise views in order to customise the pages. When included this gem generated a users database. The only addition we made to the model was adding valid and unique email checking, making sure the whenever saving an entry that all fields were present. All functionality is already dealt with when it comes creating accounts, removing accounts, updating details and encrypting saved passwords and verifying input data against them. This provided some difficulty at times as one cannot edit individual controller actions, they can only be overridden.
 
 \subsection{Project Scaffold}
+The project views consist of an index, a show, a edit and a new page. The index page has a table to list projects, the new and edit pages do the obvious and the show page displays the project along with the associated project users by rendering the project users index page and a Burndown chart to display the projects status. The project model validates the presence of the name attribute. Before routing to the index page the controller sets the projects to be listed as any that the current user owns or is a project user of. On navigating to the show page a Burndown chart is dynamically created using the googlevisualr gem, called from a class we created as the gem only supports line charts, and embedded JavaScript. The controller performs creation and deletion as one would trivially expect.
+
+Once logged in the home page is no longer accessible and one is always routed to the projects index page. Upon clicking on a project and being routed to its show page the secondary navigation bar appears.
 
 \subsection{Project User Scaffold}
 The project user scaffold is fairly simple. It has two views one for an index to list project users and on to create new project users by specifying their email. It has its model which validates an entered email address. The controller redirects any access to the index page back to the project show page  as that is where the index view is rendered. On creation the controller verify the email being added is currently a user of the site and that the project owner is not trying to add themselves as a team member. It also associates the project id with the project user on creation as project users are nested under projects in the routing.
@@ -105,6 +108,9 @@ The project user scaffold is fairly simple. It has two views one for an index to
 \subsection{Milestone Scaffold}
 
 \subsection{Task Scaffold}
+The task section has an index, a show, and edit and a new view. The index provides a table to list tasks in along with start, finish and review buttons for each task, conditionally appearing depending on the status of the task and whether the user is the creator of the task or the person who click on start. The show page displays information about that task as well as a list of comments associated with that task and allows comments to be added. The edit and new do the obvious and are accessible from the index and show page respectively. The task model validates the presence of all attributes and makes sure the associated difficulty is in the rands 1 to 10 and the status is one of 4 allowed strings. When trying to access the index page one is redirected to the milestones show page the task is nested under. Navigating to the show page results in the controller displaying details of the task as well as all comments nested under the task. The create action sets up the nesting attributes and assigns the created status to the task. It also does some validation and checks if the task already exists as it is not possible to validate in a model on two attributes uniqueness. 
+
+Tasks are assigned a difficulty estimate in days. This data is used by the Burndown chart to make estimations about a project and display the progress.
 
 \subsection{Comment Scaffold}
 The comments scaffold has only two views which are an index page which lists the comments in a bootstrap formatted table and a new page which allows adding a comment. The model validates the presence of all the fields before saving them to the database. In the controller any attempt to directly access the index page is routed to the task show page as comments are nested under tasks. the create method automatically assigns the creator_email and the associated task id.
@@ -116,9 +122,14 @@ When clicking on the edit button on the secondary navigation bar one is directed
 
 \begin{figure}
   \includegraphics[width=1\textwidth]{erd.pdf}
-  \caption{Database tables and relations}
+  \caption{Database tables and relations. Note: dependants are always destroyed along with their parents in our implementation}
   \label{fig:db}
-\end{figure}
+
+  \includegraphics[width=1\textwidth]{homepage.png}
+  \caption{Our homepage. Note: Styling might change slightly for the presentation}
+  \label{fig:homepage}
+\end{figure}}
+
 \clearpage
 
 \section{Legal Aspects}
