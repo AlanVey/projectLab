@@ -6,6 +6,10 @@
 
 % This is the preamble section where you can include extra packages etc.
 
+% Allows licence-related quotes to be italic
+\newenvironment{italicquotes}
+{\begin{quote}\itshape\small}
+{\end{quote}}
 \begin{document}
 
 \title{Webapps Project 2014: Final Report}
@@ -80,19 +84,19 @@ All in all we feel this project has been a success as we have overcome many diff
 
 \section{Legal Aspects}
 
-We've used the Ruby programming language, together with several ruby gems.
-These are under the Ruby Licence, which has been accepted by the Free Software
-Foundation as compatible under the GPL(General Public Licence)\cite{GNUlicence}
-but has not been accepted by the Open Source Initiative. The Ruby Licence has a
-copyleft status, which allows copying the code, as long as the application
-which is built using Ruby Licenced software is bound by the same licence. The
-Ruby software has a dual licence, both under the Ruby Licence and under the
-simplified BSD licence.
+We've used the Ruby programming language and its libraries, together with
+several ruby gems. All these are under the Ruby Licence, which has been
+accepted by the Free Software Foundation as compatible under the GPL(General
+Public Licence)\cite{GNUlicence} but has not been accepted by the Open Source
+Initiative. The Ruby Licence has a copyleft status, which allows copying the
+code, as long as the application which is built using Ruby Licenced software is
+bound by the same licence. The Ruby software has a dual licence, both under the
+Ruby Licence and under the simplified BSD licence.
 
 If we want to publish our project, we can do so under the Ruby Licence.
 In order to do this, we have the following options:
 
-\begin{quote}
+\begin{italicquotes}
 3. You may distribute the software in object code or binary form,
    provided that you do at least ONE of the following:
 
@@ -108,31 +112,38 @@ instructions on where to get the original software distribution.
 
 d) make other distribution arrangements with the author.
      \cite{Rubylicence}
-\end{quote}
+\end{italicquotes}
 
-In case we want to use the website commercially, we should act on clause
-d, by contacting the author of the Ruby programming language and the authors of
-the gems we have used while building our project.
+In case we want to use the website commercially, we should act on clause 
+{\it d}, by contacting the author of the Ruby programming language and the
+authors of the gems we have used while building our project.
 
 Another option for commercial distribution is to use JRuby instead of the Ruby
 interpretor, as it can support Rails projects and its licence is more suitable
 for commercial releases.
 
-\begin{quote}
+\begin{italicquotes}
 this license is intended to facilitate the commercial use of the Program
 \cite{JRubylicence}
-\end{quote}
+\end{italicquotes}
 
 We can launch our project using the following clause:
 
-\begin{quote}
+\begin{italicquotes}
 a) Subject to the terms of this Agreement, each Contributor hereby grants
 Recipient a non-exclusive, worldwide, royalty-free copyright license to
 reproduce, prepare derivative works of, publicly display, publicly perform,
 distribute and sublicense the Contribution of such Contributor, if any, and
 such derivative works, in source code and object code form.
 \cite{JRubylicence}
-\end{quote}
+\end{italicquotes}
+
+Furthermore, for the background, we have used a photo which we've taken off the
+web. We have selected that photo specifically because the owner specified that
+we are free to use it as long as we mention its origin when we place it on the
+internet, within our own web application. Therefore, in case we will publish
+our project, we will specify the origin of the image.
+
 \clearpage
 
 \section{Conclusion}
