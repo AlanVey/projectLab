@@ -92,22 +92,32 @@ We have a navigation bar which is fixed to the top of every page which always di
 A second navigation bar appears as soon as one navigates to a project show page which helps easily access the project overview, the management and the editing of that project as well as a home button taking one back to the projects listing page and hiding the navigation bar again. This bar is also purely generated out of bootstrap css classes and a few customisations.
 
 \subsection{Home Page}
-When navigating to our home page at projectlab.herokuapp.com our routing file is consulted which lists the root directory to be rendered by the home controller’s index action. This has no method body, so does nothing more than render the index template. The index template has a div of class .unique which loads in a background image to span the page and also renders the sign up view. From here the only other page accessible is the sign up page which has the same styling. The home page has no associated table in the database as it does not need to store anything.
+When navigating to our home page [Figure~\ref{fig:homepage}] at projectlab.herokuapp.com our routing file is consulted which lists the root directory to be rendered by the home controller’s index action. This has no method body, so does nothing more than render the index template. The index template has a div of class .unique which loads in a background image to span the page and also renders the sign up view. From here the only other page accessible is the sign up page which has the same styling. The home page has no associated table in the database as it does not need to store anything.
 
 \subsection{User Scaffold}
 All user authentication is handled by the devise gem. We installed the devise views in order to customise the pages. When included this gem generated a users database. The only addition we made to the model was adding valid and unique email checking, making sure the whenever saving an entry that all fields were present. All functionality is already dealt with when it comes creating accounts, removing accounts, updating details and encrypting saved passwords and verifying input data against them. This provided some difficulty at times as one cannot edit individual controller actions, they can only be overridden.
 
 \subsection{Project Scaffold}
+The project views consist of an index, a show, a edit and a new page. The index page has a table to list projects, the new and edit pages do the obvious and the show page displays the project along with the associated project users by rendering the project users index page and a Burndown chart to display the projects status. The project model validates the presence of the name attribute. Before routing to the index page the controller sets the projects to be listed as any that the current user owns or is a project user of. On navigating to the show page a Burndown chart is dynamically created using the googlevisualr gem, called from a class we created as the gem only supports line charts, and embedded JavaScript. The controller performs creation and deletion as one would trivially expect.
+
+Once logged in the home page is no longer accessible and one is always routed to the projects index page. Upon clicking on a project and being routed to its show page the secondary navigation bar appears.
 
 \subsection{Project User Scaffold}
 The project user scaffold is fairly simple. It has two views one for an index to list project users and on to create new project users by specifying their email. It has its model which validates an entered email address. The controller redirects any access to the index page back to the project show page  as that is where the index view is rendered. On creation the controller verify the email being added is currently a user of the site and that the project owner is not trying to add themselves as a team member. It also associates the project id with the project user on creation as project users are nested under projects in the routing.
+\clearpage
 
 \subsection{Milestone Scaffold}
+The milestone section has an index, a show, and edit and a new view. The index provides a table for the listing of milestones and the creation of new ones. The show page displays the information of the milestone and renders the tasks index page below that. At the bottom of the page it lists out the most recent comments associated with all the tasks belonging to that milestone. The edit and new pages do the obvious and are accessible from the index and show pages respectively. The milestone model validates the presence of all attributes, that the due date can not be in the past and that the status is one of the 4 valid options. In addition, it validates the uniqueness of the name attribute. When accessing the index page the controller sets the displayed milestones to those corresponding to the project. When one clicks on one of them and is routed to the show page the controller makes sure the milestone status has been updated based on the tasks, displays the task associated with that milestone ordered according to priority and displayed the comments on all the tasks associated with that milestone ordered by recency. The create sets up the dependancies as expected as a milestone is nested under a project. 
+
+To get to the milestone index page one clicks on the management button on the second navigation bar. All other functionally is accessible from there.
 
 \subsection{Task Scaffold}
+The task section has an index, a show, and edit and a new view. The index provides a table to list tasks in along with start, finish and review buttons for each task, conditionally appearing depending on the status of the task and whether the user is the creator of the task or the person who click on start. The show page displays information about that task as well as a list of comments associated with that task and allows comments to be added. The edit and new do the obvious and are accessible from the index and show page respectively. The task model validates the presence of all attributes and makes sure the associated difficulty is in the rands 1 to 10 and the status is one of 4 allowed strings. When trying to access the index page one is redirected to the milestones show page the task is nested under. Navigating to the show page results in the controller displaying details of the task as well as all comments nested under the task. The create action sets up the nesting attributes and assigns the created status to the task. It also does some validation and checks if the task already exists as it is not possible to validate in a model on two attributes uniqueness. 
+
+Tasks are assigned a difficulty estimate in days. This data is used by the Burndown chart to make estimations about a project and display the progress.
 
 \subsection{Comment Scaffold}
-The comments scaffold has only two views which are an index page which lists the comments in a bootstrap formatted table and a new page which allows adding a comment. The model validates the presence of all the fields before saving them to the database. In the controller any attempt to directly access the index page is routed to the task show page as comments are nested under tasks. the create method automatically assigns the creator_email and the associated task id.
+The comments scaffold has only two views which are an index page which lists the comments in a bootstrap formatted table and a new page which allows adding a comment. The model validates the presence of all the fields before saving them to the database. In the controller any attempt to directly access the index page is routed to the task show page as comments are nested under tasks. the create method automatically assigns the creatoremail and the associated task id.
 
 \subsection{Etherpad Scaffold}
 The EtherPad scaffold was generated to be the place where all files associated with a project are stored. It consists of and index, new, show and edit view. The index lists files in a table, the new allows for the creation of a new file, the edit allows changing the file name and the show loads a file in the EitherPad software. This is hosted on a separate website and embedded on the show page through the use of an iFrame. The model class validates the presence of all attribute and the uniqueness of file and name. When accessing the index view the controller sets the files displayed in the table to be the ones associated with the project one is currently looking at. When creating a new pad, the controller sets the project id to the current project as either pads are nested under projects. It also sets the creator to the current user and generates a random alpha-numeric string for the path so that the file is uniquely identifiable on the hosts server. 
@@ -116,9 +126,14 @@ When clicking on the edit button on the secondary navigation bar one is directed
 
 \begin{figure}
   \includegraphics[width=1\textwidth]{erd.pdf}
-  \caption{Database tables and relations}
+  \caption{Database tables and relations. Note: dependants are always destroyed along with their parents in our implementation}
   \label{fig:db}
-\end{figure}
+
+  \includegraphics[width=1\textwidth]{homepage.png}
+  \caption{Our homepage. Note: Styling might change slightly for the presentation}
+  \label{fig:homepage}
+\end{figure}}
+
 \clearpage
 
 \section{Legal Aspects}
