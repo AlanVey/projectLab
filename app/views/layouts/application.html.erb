@@ -46,10 +46,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <% if request.original_url =~ /\// %>
-          <a class="brand" href="/">Project Lab</a>
-        <% else %>
+        <% if request.original_url =~ /\/projects/ %>
           <a class="brand" href="/">Insert Logo</a>
+        <% else %>
+          <a class="brand" href="/">Project Lab</a>
         <% end %>
         <div class="container nav-collapse">
           <ul class="nav pull-right">
