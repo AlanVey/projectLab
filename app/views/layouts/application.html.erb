@@ -74,13 +74,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+          <a class="brand" href="/projects"><i class="icon-home"></i></a>
           <div class="container nav-collapse">
-            <ul class="nav pull-middle">
-              <% if request.original_url =~ /\/projects\/[0-9]+/ %>
-                <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
-                <li><%= link_to "Management", "/projects/#{@project.id}/milestones"  %></li>
-                <li><%= link_to "Creation", "/projects/#{@project.id}/etherpads"  %></li>
-              <% end %>
+            <ul class="nav">
+              <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
+              <li><%= link_to "Management", "/projects/#{@project.id}/milestones"  %></li>
+              <li><%= link_to "Creation", "/projects/#{@project.id}/etherpads"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
