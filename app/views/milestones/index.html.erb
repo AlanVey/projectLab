@@ -15,17 +15,17 @@
     <tbody>
       <% @milestones.each do |milestone| %>
         <tr>
-          <td class="vert-align"><%= link_to milestone.name, project_milestone_path(@project, milestone) %></td>
+          <td class="vert-align"><%= link_to milestone.name, project_milestone_path(@project, milestone), class: 'btn btn-link' %></td>
           <td class="vert-align"><%= milestone.due_date %></td>
           <% if milestone.status == 'Completed' %>
             <td class="vert-align"><%= milestone.status %></td>
           <% end %>
-          <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure? All associated tasks will be deleted too.' } %></td>
+          <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure? All associated tasks will be deleted too.', class: 'btn btn-danger' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to 'New Milestone', new_project_milestone_path(@project) %>
+<%= link_to 'New Milestone', new_project_milestone_path(@project), class: 'btn btn-primary' %>
 
