@@ -8,9 +8,9 @@
 <% end %>
 
 <br><br>
-<%= render template: 'project_users/index' %>
-
 <% if @project.milestones.count != 0 %>
   <div id='chart'></div>
   <%= render_chart @chart, 'chart' %>
 <% end %>
+
+<%= render template: 'project_users/index' %>

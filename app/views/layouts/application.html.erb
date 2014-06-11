@@ -75,7 +75,7 @@
             <span class="icon-bar"></span>
           </a>
           <div class="container nav-collapse">
-            <ul class="nav navbar-middle">
+            <ul class="nav">
               <% if request.original_url =~ /\/projects\/[0-9]+/ %>
                 <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
                 <li><%= link_to "Management", "/projects/#{@project.id}/milestones"  %></li>
