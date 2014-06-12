@@ -20,6 +20,7 @@
     <%= f.date_select :due_date %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, :class => "btn btn-custom" %>
+    <%= link_to 'Back', project_milestones_path(@project), class: 'btn' %>
   </div>
 <% end %>
