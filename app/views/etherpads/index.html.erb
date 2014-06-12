@@ -17,12 +17,14 @@
         <tr>
           <td class="vert-align"><%= link_to etherpad.name, project_etherpad_path(@project, etherpad), class: "btn btn-link" %></td>
           <td class="vert-align"><%= etherpad.creator %></td>
-          <td class="vert-align"><%= link_to 'Edit', edit_project_etherpad_path(@project, etherpad), class: "btn btn-link" %></td>
-          <td class="vert-align"><%= link_to 'Destroy', project_etherpad_path(@project, etherpad), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+          <td class="vert-align">
+          <%= link_to 'Edit', edit_project_etherpad_path(@project, etherpad), class: "btn" %>
+          <%= link_to 'Destroy', project_etherpad_path(@project, etherpad), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to 'New File', new_project_etherpad_path(@project), class: "btn btn-primary" %>
+<%= link_to 'New File', new_project_etherpad_path(@project), class: "btn btn-custom" %>
