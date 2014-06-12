@@ -38,7 +38,7 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="navbar-inner">
       <div class="container">
         <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -46,11 +46,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <% if request.original_url =~ /\/projects/ %>
-          <a class="brand" href="/">Insert Logo</a>
-        <% else %>
-          <a class="brand" href="/">Project Lab</a>
-        <% end %>
+        <a href="/"><img class="brand" src="/assets/projectlab.png" alt="" /></a>
         <div class="container nav-collapse">
           <ul class="nav pull-right">
             <% if user_signed_in? %>
@@ -65,27 +61,15 @@
     </div>
   </nav>
 
-  <% if request.original_url =~ /\/projects\/[0-9]+/ %>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/projects"><i class="icon-home"></i></a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Overview", "/projects/#{@project.id}"  %></li>
-              <li><%= link_to "Management", "/projects/#{@project.id}/milestones"  %></li>
-              <li><%= link_to "Creation", "/projects/#{@project.id}/etherpads"  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </nav>
-  <% end %>
+<% if request.original_url =~ /\/projects\/[0-9]+/ %>
+    <div class="secondary-nav">
+     <%= link_to "Overview", "/projects/#{@project.id}", class: 'btn btn-default'  %>
+     <%= link_to "Management", "/projects/#{@project.id}/milestones", class: 'btn btn-default'  %>
+     <%= link_to "Documents", "/projects/#{@project.id}/etherpads", class: 'btn btn-default'  %>
+    </div>
+  </div>
+<% end %>
+
 
     <div class="container">
         <div class="row">
