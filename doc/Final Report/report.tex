@@ -98,7 +98,7 @@ When navigating to our home page [Figure~\ref{fig:homepage}] at projectlab.herok
 All user authentication is handled by the devise gem. We installed the devise views in order to customise the pages. When included this gem generated a users database. The only addition we made to the model was validity checks for the login email, and making sure that whenever saving an entry all fields are present. All functionality is already dealt with when it comes to creating accounts, removing accounts, updating details and encrypting saved passwords - as well as verifying input data against them. This provided some difficulty at times as one cannot edit individual controller actions, they can only be overridden.
 
 \subsection{Project Scaffold}
-The project views consist of an index, a show, an edit and a new page. The index page has a table to list projects. The new and edit pages do just as you would expect and the show page displays the project along with all of the associated project users by rendering the project users index page and a Burndown chart to display the projects status. The project model validates the presence of the name attribute. Before routing to the index page the controller sets the projects to be listed as any that the current user owns or is a project user of. On navigating to the show page a Burndown chart is dynamically created using the googlevisualr gem, called from a class we created as the gem only supports line charts, and embedded JavaScript. The controller performs creation and deletion as one would expect.
+The project views consist of an index, a show, an edit and a new page. The index page has a table to list projects. The new and edit pages do just as you would expect and the show page displays the project along with all of the associated project users by rendering the project users index page and a Burndown chart to display the projects status [Figure~\ref{fig:milestone}]. The project model validates the presence of the name attribute. Before routing to the index page the controller sets the projects to be listed as any that the current user owns or is a project user of. On navigating to the show page a Burndown chart is dynamically created using the googlevisualr gem, called from a class we created as the gem only supports line charts, and embedded JavaScript. The controller performs creation and deletion as one would expect.
 
 \subsection{Project User Scaffold}
 The project user scaffold is fairly simple. It has two views one for an index to list project users and one to create new project users by specifying their email. It has its model which validates an entered email address. The controller redirects any access to the index page back to the project show page, as that is where the index view is rendered. On creation, the controller verifies that the email being added is currently a user of the site, and that the project owner is not trying to add themselves as a team member. It also associates the project id with the project user on creation, as project users are nested under projects in the routing.
@@ -113,12 +113,13 @@ To get to the milestone index page the user clicks on the management button on t
 The task section has an index, a show, an edit and a new view. The index provides a table that lists the tasks; along with start, finish and review buttons for each task. These conditionally appear depending on the status of the task, and whether the user is the creator of the task or the person who clicked on start. The show page displays information about that task as well as a list of comments associated with that task, and allows comments to be added. The edit and new do what you would expect and are accessible from the index and show pages respectively. The task model validates the presence of all attributes, makes sure that the associated difficulty is in the range of 1 to 10, and makes sure that the status is one of the 4 allowed strings. When trying to access the index page, the user is redirected to the milestones show page that the task is nested under. Navigating to the show page results in the controller displaying details of the task as well as all comments nested under the task. The create action sets up the nesting attributes and assigns the created status to the task. It also does some validation, and checks if the task already exists as it is not possible to validate in a model the uniqeness of two attributes. 
 
 Tasks are assigned a difficulty estimate in days. This data is used by the Burndown chart to make estimations about a project and display the progress.
+\clearpage
 
 \subsection{Comment Scaffold}
 The comments scaffold has only two views which are an index page, which lists the comments in a bootstrap formatted table, and a new page which allows the user to add a comment. The model validates the presence of all the fields before saving them to the database. In the controller, any attempt to directly access the index page is routed to the task show page as comments are nested under tasks. the create method automatically assigns the creator email and the associated task id.
 
 \subsection{Etherpad Scaffold}
-The EtherPad scaffold was generated to be the place where all files associated with a project are stored. It consists of an index, new, show and edit view. The index lists files in a table, the new allows for the creation of a new file, the edit allows changing the file name, and the show loads a file in the EtherPad software. This is hosted on a separate website and embedded on the show page through the use of an iFrame. The model class validates the presence of all attributes as well as the uniqueness of file and name. When accessing the index view the controller sets the files displayed in the table to be the ones associated with the project the user is currently looking at. When creating a new pad, the controller sets the project id to the current project, as Etherpads are nested under projects. It also sets the creator to the current user, and generates a random alpha-numeric string for the path so that the file is uniquely identifiable on the hosts server. 
+The EtherPad scaffold was generated to be the place where all files associated with a project are stored. It consists of an index, new, show and edit view. The index lists files in a table, the new allows for the creation of a new file, the edit allows changing the file name, and the show loads a file in the EtherPad software [Figure~\ref{fig:etherpad}]. This is hosted on a separate website and embedded on the show page through the use of an iFrame. The model class validates the presence of all attributes as well as the uniqueness of file and name. When accessing the index view the controller sets the files displayed in the table to be the ones associated with the project the user is currently looking at. When creating a new pad, the controller sets the project id to the current project, as Etherpads are nested under projects. It also sets the creator to the current user, and generates a random alpha-numeric string for the path so that the file is uniquely identifiable on the hosts server. 
 
 When clicking on the edit button on the secondary navigation bar, the user is directed to the index page for the files from which all other functionality is accessible. 
 
@@ -130,6 +131,18 @@ When clicking on the edit button on the secondary navigation bar, the user is di
   \includegraphics[width=1\textwidth]{homepage.png}
   \caption{Our homepage. Note: Styling might change slightly for the presentation}
   \label{fig:homepage}
+\end{figure}}
+
+\clearpage
+
+\begin{figure}
+  \includegraphics[width=1\textwidth]{overview.png}
+  \caption{A screenshot of a project's show page}
+  \label{fig:milestone}
+
+  \includegraphics[width=1\textwidth]{edit.png}
+  \caption{An example file opened in Etherpad, being edited by 2 users simultaneaously}
+  \label{fig:etherpad}
 \end{figure}}
 
 \clearpage
