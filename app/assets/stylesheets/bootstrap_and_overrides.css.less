@@ -6,18 +6,16 @@
 @iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
-@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
-@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
-@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
-@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+// @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+// @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+// @fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+// @fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+// @fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome/font-awesome";
+// @import "fontawesome/font-awesome";
 
-body {
-  padding-top: 120px
-}
+
 
 // Glyphicons
 @import "twitter/bootstrap/sprites.less";
@@ -34,8 +32,44 @@ body {
 // @linkColor: #ff0000;
 
 // Both Navbar styling
-@navbarHeight: 55px;
-ul.nav a:hover { color: #049cdb !important; }
+
+.btn-custom {
+  background-color: hsl(209, 60%, 31%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1f507e", endColorstr="#1f507e");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#1f507e), to(#1f507e));
+  background-image: -moz-linear-gradient(top, #1f507e, #1f507e);
+  background-image: -ms-linear-gradient(top, #1f507e, #1f507e);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f507e), color-stop(100%, #1f507e));
+  background-image: -webkit-linear-gradient(top, #1f507e, #1f507e);
+  background-image: -o-linear-gradient(top, #1f507e, #1f507e);
+  background-image: linear-gradient(#1f507e, #1f507e);
+  border-color: #1f507e #1f507e hsl(209, 60%, 31%);
+  color: #fff !important;
+  font-weight:bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c63838", endColorstr="#c63838");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#c63838), to(#c63838));
+  background-image: -moz-linear-gradient(top, #c63838, #c63838);
+  background-image: -ms-linear-gradient(top, #c63838, #c63838);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c63838), color-stop(100%, #c63838));
+  background-image: -webkit-linear-gradient(top, #c63838, #c63838);
+  background-image: -o-linear-gradient(top, #c63838, #c63838);
+  background-image: linear-gradient(#c63838, #c63838);
+  border-color: #c63838 #c63838 hsl(360, 56%, 50%);
+  color: #fff !important;
+  font-weight:bold;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+ul.nav a:hover { color: #34495e !important; }
 
 // Before user authentication settings
 .unique { 
@@ -48,6 +82,50 @@ ul.nav a:hover { color: #049cdb !important; }
     vertical-align: middle;
 }
 
-.navbar-default{ 
-  margin-top: 55px 
+.nav a {
+  font-size: 13px;
+  font-weight: bold;
+  display: inline;
+  color: #000000;                        
+  font-family: Arial;
+}
+
+.navbar-default { 
+  background-color: #d1d5d8;
+  background-image: none;
+}
+
+// Navbar logo
+.brand {
+	height: 25px;
+	margin-right:10px
+}
+
+.p-project { 
+	margin:-50px;
+}
+
+// Secondary Nav
+
+.secondary-nav {
+	margin-left:500px;
+	margin-top:40px;
+}
+
+.secondary-nav .btn {
+  border:0;
+  border-radius: 5px;
+  font-weight:bold;
+  margin-left:5px;
+}
+.secondary-nav .btn:hover{
+  background-color: #d1d5d8;
+}
+
+.secondary-nav a:active, .secondary-nav a.active{
+  background-color: #d1d5d8;
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

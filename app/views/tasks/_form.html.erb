@@ -27,7 +27,7 @@
     <%= f.label :priority %><br>
     <%= f.select :priority, [['Critical',1],['High',2],['Medium',3],['Low',4]] %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+    <%= f.submit nil, :class => "btn btn-custom" %>
   </div>
 <% end %>

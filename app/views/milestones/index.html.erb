@@ -1,5 +1,5 @@
-<h1>Listing Milestones</h1><br>
 
+<p class='p-project'><h1>Listing Milestones</h1></p><br>
 <% if @milestones.count == 0 %>
   Your project requires some planning! <br>
 <% else %>
@@ -20,12 +20,12 @@
           <% if milestone.status == 'Completed' %>
             <td class="vert-align"><%= milestone.status %></td>
           <% end %>
-          <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure? All associated tasks will be deleted too.', class: 'btn btn-danger' } %></td>
+          <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to 'New Milestone', new_project_milestone_path(@project), class: 'btn btn-primary' %>
+<%= link_to 'New Milestone', new_project_milestone_path(@project), :class => 'btn btn-custom' %>
 
