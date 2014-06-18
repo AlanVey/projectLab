@@ -42,4 +42,27 @@ class ApplicationController < ActionController::Base
 
     redirect_to projects_path if !@project_user_or_owner
   end  
+
+  def update_milestone_status
+    @statuses = Array.new
+    @status = @milestone.status
+    @milestone.tasks.each {|task| @statuses << task.status}
+
+    if @statuses.size == 0 or @statuses.count('Created') == @statuses.size
+      @milestone.status = 'Created'
+    elsif (@statuses.count {|s| s == 'Pending Review' || s == 'Completed'}) != @statuses.size
+      @milestone.status = 'Started' 
+      if @project.started_at.nil?
+        @project.started_at = Date.today
+        @project.save
+      end
+    elsif @statuses.count('Completed') != @statuses.size
+      @milestone.status = 'Pending Review'
+    elsif @milestone.status != 'Completed'
+      @milestone.status = 'Completed'
+      @milestone.completion_date = Date.today
+    end 
+
+    @milestone.save if @milestone.status != @status 
+  end
 end

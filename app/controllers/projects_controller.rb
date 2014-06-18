@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    if @project.milestones.count != 0
+    if @project.milestones.count != 0 && !@project.started_at.nil?
       @chart = Burndown_chart.create_burndown_chart(@project)
     end
   end

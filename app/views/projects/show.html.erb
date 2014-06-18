@@ -9,7 +9,7 @@
 <% end %>
 
 <br><br>
-<% if @project.milestones.count != 0 %>
+<% if @project.milestones.count != 0 && !@project.started_at.nil? %>
   <div id='chart'></div>
   <%= render_chart @chart, 'chart' %>
 <% end %>

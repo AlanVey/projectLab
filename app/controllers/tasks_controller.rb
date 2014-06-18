@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_filter :user_not_signed_in
   before_action :set_project
+  before_filter :user_is_project_user_or_owner
   before_action :set_milestone
   before_action :set_task, except: [:create, :new, :index]
 
