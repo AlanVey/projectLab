@@ -1,17 +1,23 @@
 <script src='http://www.google.com/jsapi'></script>
 
-<p class='p-project'><h1><%= @project.name %></h1></p>
-<p><strong>Project Leader:</strong> <%= @project.user.email %></p>
-<p><%= @project.description %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+	 <p><strong>Project Leader:</strong> <%= @project.user.email %></p>
+	 <p><%= @project.description %></p>
 
-<% if current_user == @project.user %>
-  <%= link_to 'Edit', edit_project_path, :class => 'btn' %> 
-<% end %>
+	 <% if current_user == @project.user %>
+	    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+	 <% end %>
+  </div>
+  <div class="col-xs-8 offset4">
+	  <% if @project.milestones.count != 0 && !@project.started_at.nil? %>
+		 <div class="chart" id='chart'></div>
+		  <%= render_chart @chart, 'chart' %>
+	  <% end %>
+	  <div class="col-xs-8">
+	    <%= render template: 'project_users/index' %>
+	  </div> 
+  </div>
+</div>
 
-<br><br>
-<% if @project.milestones.count != 0 && !@project.started_at.nil? %>
-  <div id='chart'></div>
-  <%= render_chart @chart, 'chart' %>
-<% end %>
-
-<%= render template: 'project_users/index' %>
