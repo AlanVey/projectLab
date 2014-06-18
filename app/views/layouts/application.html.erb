@@ -60,8 +60,12 @@
       </div>
     </div>
   </nav>
+  
 
-    <div class="container">
+
+
+
+    <div class="container1">
         <div class="row">
 
           <% flash.each do |name, msg| %>
@@ -71,27 +75,24 @@
               <%= msg %>
             </div>
           <% end %>
-
+        </div>
           <%= bootstrap_flash %>
+          <% if request.original_url =~ /\/projects\/[0-9]+/ %>
+            <div class="row">
+                <div class="col-xs-4">
+                  <h1><%= @project.name %></h1>
+                </div>
+                <div class="col-xs-8 offset4">
+                  <div class="secondary-nav">
+                    <%= link_to "Overview", "/projects/#{@project.id}", class: 'btn btn-default'  %>
+                    <%= link_to "Management", "/projects/#{@project.id}/milestones", class: 'btn btn-default'  %>
+                    <%= link_to "Documents", "/projects/#{@project.id}/etherpads", class: 'btn btn-default'  %>
+                  </div>
+                </div>
+            </div>
+          <% end %>
           <%= yield %>
-        </div><!--/row-->
     </div> <!-- /container -->
 
-    <% if request.original_url =~ /\/projects\/[0-9]+/ %>
-      <div class="container">
-        <div class="row">
-            <div class="col-xs-4">
-              <h1><%= @project.name %></h1>
-            </div>
-            <div class="col-xs-8 offset4">
-              <div class="secondary-nav">
-                <%= link_to "Overview", "/projects/#{@project.id}", class: 'btn btn-default'  %>
-                <%= link_to "Management", "/projects/#{@project.id}/milestones", class: 'btn btn-default'  %>
-                <%= link_to "Documents", "/projects/#{@project.id}/etherpads", class: 'btn btn-default'  %>
-              </div>
-            </div>
-        </div>
-      </div>
-    <% end %>
   </body>
 </html>

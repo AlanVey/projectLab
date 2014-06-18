@@ -2,7 +2,7 @@ class Burndown_chart
 
   def self.create_burndown_chart(project)
     @@project = project
-    @@num_milestones = project.milestones.count
+    @@project_duration = (project_due_date - @@project.started_at).to_i + 1
     GoogleVisualr::Interactive::LineChart.new(process_data(initialise_table), options)
   end
 
@@ -12,95 +12,66 @@ class Burndown_chart
       {:width => 800, :height => 400, :title => 'Burndown Chart', :legend => 'bottom'}
     end
 
-    def self.initialise_table
-      table = GoogleVisualr::DataTable.new
-      table.new_column('date', 'Date')
-      table.new_column('number', 'Optimal')
-      table.new_column('number', 'Actual')
-      table.add_rows((Date.today - @@project.created_at.to_date).to_i + remaining_project_difficulty + 1)
-      table
-    end
-
     def self.process_data(table)
-      sum_difficulty_optimal = project_difficulty
+      milestones = @@project.milestones.order(:due_date)
 
-      # Initial setup
-      table.set_cell(0, 0, @@project.created_at.to_date)
-      table.set_cell(0, 1, sum_difficulty_optimal)
-      table.set_cell(0, 2, sum_difficulty_optimal)
-
-      # Optimal/Actual Line
-      i = 0
-      begin
+      i = 1
+      milestones.each do |milestone|
+        table.set_cell(i, 0, milestone.due_date)
+        table.set_cell(i, 1, optimal_milestone_difficulty(milestone.due_date))
+        table.set_cell(i, 2, actual_milestone_difficulty(milestone.due_date))
         i += 1
-        date = @@project.created_at.to_date + i
-
-        table.set_cell(i, 0, date)
-
-        # Creating optimal line points
-        sum_difficulty_optimal -= 1
-        if sum_difficulty_optimal <= 0
-          table.set_cell(i, 1, 0)
-        else
-          table.set_cell(i, 1, sum_difficulty_optimal)
-        end
-
-        # Creating actual line points
-        if(task_latest_updated_at < date + 1)
-          constant_dec = task_difficulty_completed_by(date) - (date - 1 - task_latest_updated_at).to_i
-          if constant_dec > 0
-            table.set_cell(i, 2, constant_dec)
-          else
-            table.set_cell(i, 2, 0)
-          end
-        else
-          table.set_cell(i, 2, task_difficulty_completed_by(date))
-        end
-      end while sum_difficulty_optimal != 0
+      end
 
       table
     end
 
     def self.project_difficulty
       sum = 0
-      @@project.milestones.each do |milestone|
-        sum += milestone_difficulty(milestone)
-      end
-      sum
-    end
-
-    def self.remaining_project_difficulty
-      sum = 0
-      @@project.milestones.each do |milestone|
-        sum += milestone_difficulty(milestone) if milestone.status != 'Completed'
-      end
+      @@project.milestones.each {|m| sum += milestone_difficulty(m) }
       sum
     end
 
     def self.milestone_difficulty(milestone)
       sum = 0
-      milestone.tasks.each {|t| sum += t.difficulty}
+      milestone.tasks.each { |t| sum += t.difficulty }
       sum
     end
 
-    def self.task_difficulty_completed_by(date)
-      sum = project_difficulty
-      @@project.milestones.each do |milestone|
-        milestone.tasks.each do |task|
-          sum -= task.difficulty if task.status == 'Completed' && task.updated_at <= date
-        end
-      end
-      sum
+    def self.optimal_milestone_difficulty(date)
+      difficulty = project_difficulty
+      @@project.milestones.each {|m| difficulty -= milestone_difficulty(m) if m.due_date <= date}
+      difficulty
     end
 
-    def self.task_latest_updated_at
-      date = Date.new(1990,1,1)
-      @@project.milestones.each do |milestone|
-        task_date = Task.where(milestone_id: milestone.id).order('updated_at DESC').first.updated_at
-        if date < task_date.to_date
-          date = task_date.to_date
-        end
-      end
-      date
+    def self.actual_milestone_difficulty(date)
+      difficulty = project_difficulty
+      @@project.milestones.each {|m| difficulty -= milestone_difficulty(m) if m.due_date <= date && m.status == 'Completed'}
+      difficulty
     end
+
+    def self.project_due_date
+      due_date = Date.new(1990,1,1)
+      @@project.milestones.each do |milestone|
+        due_date = milestone.due_date if milestone.due_date > due_date
+      end
+      due_date
+    end
+
+    def self.initialise_table
+      table = GoogleVisualr::DataTable.new
+      table.new_column('date', 'Date')
+      table.new_column('number', 'Optimal Path')
+      table.new_column('number', 'Actual Path')
+      table.add_rows(@@project_duration)
+      
+      # Initial setup
+      work_hours = project_difficulty
+      table.set_cell(0, 0, @@project.started_at)
+      table.set_cell(0, 1, work_hours)
+      table.set_cell(0, 2, work_hours)
+      
+      table
+    end
+
 end

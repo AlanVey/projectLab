@@ -1,5 +1,5 @@
+<div class="members">
 <h4>Team Members</h4>
-
 <% if @project_user.count == 0 %>
   You are currently working alone<br>
 <% else %>
@@ -26,3 +26,4 @@
 <% if current_user == @project.user %>
   <%= link_to 'Add user', new_project_project_user_path(@project), :class => 'btn btn-custom' %> 
 <% end %>
+</div>

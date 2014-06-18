@@ -1,6 +1,7 @@
 class MilestonesController < ApplicationController
   before_filter :user_not_signed_in
   before_action :set_project
+  before_filter :user_is_project_user_or_owner
   before_action :set_milestone, only: [:show, :edit, :update, :destroy]
 
   # GET /milestones
@@ -71,25 +72,6 @@ class MilestonesController < ApplicationController
   end
 
   private
-    
-    def update_milestone_status
-      @statuses = Array.new
-      @status = @milestone.status
-      @milestone.tasks.each {|task| @statuses << task.status}
-
-      if @statuses.size == 0 or @statuses.count('Created') == @statuses.size
-        @milestone.status = 'Created'
-      elsif (@statuses.count {|s| s == 'Pending Review' || s == 'Completed'}) != @statuses.size
-        @milestone.status = 'Started' 
-      elsif @statuses.count('Completed') != @statuses.size
-        @milestone.status = 'Pending Review'
-      elsif @milestone.status != 'Completed'
-        @milestone.status = 'Completed'
-        @milestone.completion_date = Date.today
-      end 
-
-      @milestone.save if @milestone.status != @status 
-    end
 
     def set_milestone
       @milestone = Milestone.find(params[:id])
