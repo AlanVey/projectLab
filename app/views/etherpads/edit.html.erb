@@ -1,5 +1,19 @@
-<h1>Editing File Name</h1>
+<div class="row">
+    <div class="col-xs-4">
+		 <p><strong>Project Leader:</strong></p>
+		 <p><%= @project.user.email %></p>
+		 <br>
+		 <p><strong>Description:</strong></p>
+		 <p><%= @project.description %></p>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', project_etherpads_path(@project) %>
+		 <% if current_user == @project.user %>
+		    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+		 <% end %>
+    </div>
+	<div class="col-xs-8 offset4">
+		<div class='files'>
+		 	<h3>Change File Name</h3>
+		 	<%= render 'form' %>
+		</div>
+	</div>
+</div>

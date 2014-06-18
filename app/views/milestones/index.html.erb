@@ -1,42 +1,49 @@
-<div class="toprow">
- <div class="span4">
-  <p><h1><%= @project.name %></h1></p>
-  <p><strong>Project Leader:</strong> <%= @project.user.email %></p>
-  <p><%= @project.description %></p>
 
-  <% if current_user == @project.user %>
-    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
-  <% end %>
- </div>
+<div class="row">
+  <div class="col-xs-4">
+   <p><strong>Project Leader:</strong></p>
+   <p><%= @project.user.email %></p>
+   <br>
+   <p><strong>Description:</strong></p>
+   <p><%= @project.description %></p>
 
-<div class="span8">
-<p><h1>Listing Milestones</h1></p>
-<% if @milestones.count == 0 %>
-  Your project requires some planning! 
-<% else %>
-  <table class="table table-hover table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Due date</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+   <% if current_user == @project.user %>
+      <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+   <% end %>
+    </div>
 
-    <tbody>
-      <% @milestones.each do |milestone| %>
-        <tr>
-          <td class="vert-align"><%= link_to milestone.name, project_milestone_path(@project, milestone), class: 'btn btn-link' %></td>
-          <td class="vert-align"><%= milestone.due_date %></td>
-          <% if milestone.status == 'Completed' %>
-            <td class="vert-align"><%= milestone.status %></td>
+  <div class="col-xs-8 offset4">
+    <div class='milestones'>
+    <div class="row">
+    <p><h3>Listing Milestones</h3></p>
+    <% if @milestones.count == 0 %>
+      Your project requires some planning! 
+    <% else %>
+      <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Due date</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @milestones.each do |milestone| %>
+            <tr>
+              <td class="vert-align"><%= link_to milestone.name, project_milestone_path(@project, milestone), class: 'btn btn-link' %></td>
+              <td class="vert-align"><%= milestone.due_date %></td>
+              <% if milestone.status == 'Completed' %>
+                <td class="vert-align"><%= milestone.status %></td>
+              <% end %>
+              <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+            </tr>
           <% end %>
-          <td class="vert-align"><%= link_to 'Remove', project_milestone_path(@project, milestone), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-<%= link_to 'New Milestone', new_project_milestone_path(@project), :class => 'btn btn-custom' %>
+        </tbody>
+      </table>
+    <% end %>
+    <%= link_to 'New Milestone', new_project_milestone_path(@project), :class => 'btn btn-custom' %>
+    </div>
+  </div>  
 </div>
-
+</div>
