@@ -63,7 +63,7 @@ class Burndown_chart
       table.new_column('date', 'Date')
       table.new_column('number', 'Optimal Path')
       table.new_column('number', 'Actual Path')
-      table.add_rows(@@project_duration)
+      table.add_rows(@@project.milestones.count + 1)
       
       # Initial setup
       work_hours = project_difficulty
