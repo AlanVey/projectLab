@@ -16,6 +16,7 @@
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, :class => "btn btn-custom" %>
+    <%= link_to 'Back', project_project_users_path(@project, @project_user), class: 'btn' %>
   </div>
 <% end %>
