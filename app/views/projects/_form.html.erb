@@ -27,7 +27,7 @@
     <% if request.original_url =~ /\/projects\/new/ %>
       <%= link_to 'Cancel', projects_path, :class => 'btn' %>
     <% else %>
-      <%= link_to 'Cancel', projects_path(@project), :class => 'btn' %>
+      <%= link_to 'Cancel', project_path(@project), :class => 'btn' %>
     <% end %>
   </div>
 
