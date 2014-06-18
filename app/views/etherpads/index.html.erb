@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-xs-4">
+    <div class="align">
    <p><strong>Project Leader:</strong></p>
    <p><%= @project.user.email %></p>
    <br>
@@ -7,10 +8,12 @@
    <p><%= @project.description %></p>
 
    <% if current_user == @project.user %>
-      <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+      <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-custom' %> 
    <% end %>
-</div>
+    </div>
+    </div>
 <div class="col-xs-8 offset4">
+<br>
   <div class="files">
   <p><h3>Listing Files</h3></p><br>
   <% if @etherpads.count == 0 %>
@@ -31,7 +34,7 @@
             <td class="vert-align"><%= link_to etherpad.name, project_etherpad_path(@project, etherpad), class: "btn btn-link" %></td>
             <td class="vert-align"><%= etherpad.creator %></td>
             <td class="vert-align">
-            <%= link_to 'Edit', edit_project_etherpad_path(@project, etherpad), class: "btn" %>
+            <%= link_to 'Edit', edit_project_etherpad_path(@project, etherpad), class: 'btn btn-custom' %>
             <%= link_to 'Destroy', project_etherpad_path(@project, etherpad), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
             </td>
           </tr>

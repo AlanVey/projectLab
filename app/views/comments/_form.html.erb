@@ -15,6 +15,7 @@
     <%= f.text_area :comment %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, class: "btn btn-custom" %>
+    <%= link_to 'Back', project_milestone_task_path(@project, @milestone, @task), class: 'btn' %>
   </div>
 <% end %>

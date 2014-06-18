@@ -1,4 +1,25 @@
 
-<iframe src= <%= @etherpad.file %> width=1200 height=800></iframe>
+  <div class="row">
+    <div class="col-xs-4">
+    <div class="align">
+	 <p><strong>Project Leader:</strong></p>
+	 <p><%= @project.user.email %></p>
+	 <br>
+	 <p><strong>Description:</strong></p>
+	 <p><%= @project.description %></p>
 
-<%= link_to 'Back', project_etherpads_path(@project), class: 'btn' %>
+	 <% if current_user == @project.user %>
+	    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-custom' %> 
+	 <% end %>
+    </div>
+    </div>
+    <div class="col-xs-8 offset4">
+      <div class="etherpad">
+      <br>
+        <iframe src= <%= @etherpad.file %> width=770 height=700></iframe>
+        <br>
+        <%= link_to 'Back', project_etherpads_path(@project), class: 'btn' %>
+        <br><br>
+      </div>
+	</div>
+  </div>

@@ -1,52 +1,54 @@
+<div class="row">
+  <div class="col-xs-4">
+    <div class="align">
+   <p><strong>Project Leader:</strong></p>
+   <p><%= @project.user.email %></p>
+   <br>
+   <p><strong>Description:</strong></p>
+   <p><%= @project.description %></p>
 
-<p>
-  <h2>Milestone: <%= @milestone.name %></h2>
-</p>
+   <% if current_user == @project.user %>
+      <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-custom' %> 
+   <% end %>
+    </div>
+    </div>
 
-<p>
-  <strong>Due date:</strong>
-  <%= @milestone.due_date %>
-</p>
+  <div class="col-xs-8 offset4">
+   <div class='milestones'>
+    <div class="row">
+    <br>
+    <p>
+      <h3>Milestone: <%= @milestone.name %></h3>
+    </p>
 
-<% if !@milestone.completion_date.nil? %>
-  <p>
-    <strong>Completion date:</strong>
-    <%= @milestone.completion_date %>
-  </p>
-<% end %>
+    <p>
+      <strong>Due date:</strong>
+      <%= @milestone.due_date %>
+    </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @milestone.status %>
-</p>
+    <% if !@milestone.completion_date.nil? %>
+      <p>
+        <strong>Completion date:</strong>
+        <%= @milestone.completion_date %>
+      </p>
+    <% end %>
 
-<%= link_to 'Edit', edit_project_milestone_path(@project, @milestone) %> |
-<%= link_to 'Back', project_milestones_path(@project) %>
+    <p>
+      <strong>Status:</strong>
+      <%= @milestone.status %>
+    </p>
 
-<br><br><br>
-<%= render template: 'tasks/index' %>
-<br><br>
+    <%= link_to 'Edit', edit_project_milestone_path(@project, @milestone), :class => 'btn btn-custom' %> 
+    <%= link_to 'Back', project_milestones_path(@project), :class => 'btn' %>
 
-<% if @comments.count != 0 %>  
-  <h4>Comments</h4>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>User</th>
-        <th>Created At</th>
-        <th>Comment</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+    <br><br><br>
+    <%= render template: 'tasks/index' %>
+    <br><br><br>
 
-    <tbody>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= comment.creator_email %></td>
-          <td><%= comment.created_at %></td>
-          <td><%= comment.comment %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <% if @comments.count != 0 %>  
+      <%= render template: 'comments/index' %>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>
