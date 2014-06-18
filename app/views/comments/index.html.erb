@@ -15,10 +15,10 @@
       <% @comments.each do |comment| %>
         <tr>
           <td class="vert-align"><%= comment.creator_email %></td>
-          <td class="vert-align"><%= comment.created_at %></td>
+          <td class="vert-align"><%= comment.created_at.to_date %></td>
           <td class="vert-align"><%= comment.comment %></td>
           <% if current_user.email == comment.creator_email %>
-            <td class="vert-align"><%= link_to 'Remove', project_milestone_task_comment_path(@project, @milestone, @task, comment), method: :delete %></td>
+            <td class="vert-align"><%= link_to 'Remove', project_milestone_task_comment_path(@project, @milestone, @milestone.tasks, comment), method: :delete, class: 'btn btn-danger' %></td>
           <% end %>
         </tr>
       <% end %>
@@ -26,4 +26,4 @@
   </table>
 <% end %>
 
-<%= link_to 'Add Comment', new_project_milestone_task_comment_path(@project, @milestone, @task) %>
+

@@ -1,36 +1,55 @@
-<p>
-  <h2>Task: <%= @task.name %></h2>
-</p>
+<div class="row">
+  <div class="col-xs-4">
+    <div class="align">
+   <p><strong>Project Leader:</strong></p>
+   <p><%= @project.user.email %></p>
+   <br>
+   <p><strong>Description:</strong></p>
+   <p><%= @project.description %></p>
 
-<p>
-  <%= @task.description %>
-</p>
+   <% if current_user == @project.user %>
+      <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+   <% end %>
+    </div>
+    </div>
+  <div class="col-xs-8 offset4">
+   <div class='milestones'>
+    <div class="row">
+    <br>
+    <p>
+      <h3>Task: <%= @task.name %></h3>
+    </p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @task.user_email %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @task.description %>
+    </p>
 
-<% if !@task.owner_email.nil? %>
-  <p>
-    <strong>Owner:</strong>
-    <%= @task.owner_email %>
-  </p>
-<% end %>
+    <% if !@task.owner_email.nil? %>
+      <p>
+        <strong>Owner:</strong>
+        <%= @task.owner_email %>
+      </p>
+    <% end %>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
+    <p>
+      <strong>Status:</strong>
+      <%= @task.status %>
+    </p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @task.priority %>
-  <strong>Difficulty:</strong>
-  <%= @task.difficulty %>
-</p>
-<%= link_to 'Edit', edit_project_milestone_task_path(@project, @milestone, @task) %> |
-<%= link_to 'Back', project_milestone_tasks_path(@project, @milestone) %>
+    <p>
+      <strong>Priority:</strong>
+      <%= @task.priority %>
+      <strong>Difficulty:</strong>
+      <%= @task.difficulty %>
+    </p>
+    <%= link_to 'Edit', edit_project_milestone_task_path(@project, @milestone, @task), class: 'btn btn-custom' %>
+    <%= link_to 'Back', project_milestone_tasks_path(@project, @milestone), class: 'btn' %>
 
-<br><br>
-<%= render template: 'comments/index' %>
+    <br><br><br>
+    <%= render template: 'comments/index' %>
+    <%= link_to 'Add Comment', new_project_milestone_task_comment_path(@project, @milestone, @task), class: 'btn btn-custom' %>
+      </div>
+    </div>
+  </div>
+</div>

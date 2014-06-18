@@ -2,6 +2,7 @@
 
   <div class="row">
     <div class="col-xs-4">
+    <div class="align">
 	 <p><strong>Project Leader:</strong></p>
 	 <p><%= @project.user.email %></p>
 	 <br>
@@ -9,11 +10,13 @@
 	 <p><%= @project.description %></p>
 
 	 <% if current_user == @project.user %>
-	    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+	    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-custom' %> 
 	 <% end %>
+    </div>
     </div>
     <div class="col-xs-8 offset4">
       <div class="row">
+      <br><br>
 	    <% if @project.milestones.count != 0 && !@project.started_at.nil? %>
 		 <div class="chart" id='chart'></div>
 		  <%= render_chart @chart, 'chart' %>

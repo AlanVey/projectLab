@@ -1,4 +1,4 @@
-<h3>Tasks</h3>
+<h4>Tasks</h4>
 
 <% if @tasks.count == 0 %>
 Your milestone requires some planning! <br>
@@ -18,24 +18,23 @@ Your milestone requires some planning! <br>
     <tbody>
       <% @tasks.each do |task| %>
         <tr>
-          <td class="vert-align"><%= link_to task.name, project_milestone_task_path(@project, @milestone, task) %></td>
+          <td class="vert-align"><%= link_to task.name, project_milestone_task_path(@project, @milestone, task), class: 'btn btn-link' %></td>
           <td class="vert-align"><%= task.user_email %></td>
           <td class="vert-align"><%= task.difficulty %></td>
           <td class="vert-align"><%= task.priority %></td>
           <td class="vert-align"><%= task.status %></td>
           <% if task.status == 'Created' %>
-            <td class="vert-align"><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Start', start_status_project_milestone_task_path(@project, @milestone, task), class: 'btn btn-custom' %></td>
           <% elsif task.status == 'Started' && current_user.email == task.owner_email%>
-            <td class="vert-align"><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Finish', review_status_project_milestone_task_path(@project, @milestone, task), class: 'btn btn-custom' %></td>
           <% elsif task.status == 'Pending Review' && current_user.email == task.user_email%>
-            <td class="vert-align"><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task) %></td>
+            <td class="vert-align"><%= link_to 'Reviewed', complete_status_project_milestone_task_path(@project, @milestone, task), class: 'btn btn-custom' %></td>
           <% end %>
-          <td class="vert-align"><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete %></td>
+          <td class="vert-align"><%= link_to 'Destroy', project_milestone_task_path(@project, @milestone, task), method: :delete, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
-<br>
 
 <%= link_to 'New Task', new_project_milestone_task_path(@project, @milestone), :class => "btn btn-custom" %>
