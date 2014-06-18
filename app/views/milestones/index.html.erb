@@ -1,7 +1,18 @@
+<div class="toprow">
+ <div class="span4">
+  <p><h1><%= @project.name %></h1></p>
+  <p><strong>Project Leader:</strong> <%= @project.user.email %></p>
+  <p><%= @project.description %></p>
 
-<p class='p-project'><h1>Listing Milestones</h1></p><br>
+  <% if current_user == @project.user %>
+    <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %> 
+  <% end %>
+ </div>
+
+<div class="span8">
+<p><h1>Listing Milestones</h1></p>
 <% if @milestones.count == 0 %>
-  Your project requires some planning! <br>
+  Your project requires some planning! 
 <% else %>
   <table class="table table-hover table-striped table-bordered">
     <thead>
@@ -26,6 +37,6 @@
     </tbody>
   </table>
 <% end %>
-
 <%= link_to 'New Milestone', new_project_milestone_path(@project), :class => 'btn btn-custom' %>
+</div>
 
